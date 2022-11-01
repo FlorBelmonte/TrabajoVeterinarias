@@ -13,11 +13,14 @@ export default class Cliente {
     public getNombre():string{
         return this.nombre
     }
+
     public getNumVisitas():number{
         return this.numVisitas
     }
     public setTelefono(nuevoTelefono:number):void{
         this.telefono=nuevoTelefono
     }
-
+    public getId(): number{
+        return this.id
+    }
 }

@@ -16,6 +16,9 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
         this.telefono = nuevoTelefono;
     };
+    Cliente.prototype.getId = function () {
+        return this.id;
+    };
     return Cliente;
 }());
 exports["default"] = Cliente;
