@@ -20,4 +20,11 @@ export default class Cliente {
         this.telefono=nuevoTelefono
     }
 
+    public esClienteVip(){
+        if (this.numVisitas>=5){
+            console.log("El cliente es Vip")
+        }
+    }
+
 }
+

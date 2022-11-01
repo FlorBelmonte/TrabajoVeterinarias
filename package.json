@@ -1,0 +1,19 @@
+{
+  "name": "trabajoveterinarias",
+  "version": "1.0.0",
+  "description": "Trabajo de Veterinarias",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FlorBelmonte/TrabajoVeterinarias.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FlorBelmonte/TrabajoVeterinarias/issues"
+  },
+  "homepage": "https://github.com/FlorBelmonte/TrabajoVeterinarias#readme"
+}
