@@ -3,7 +3,7 @@ import Paciente from "./class/paciente";
 import Proveedor from "./class/proveedores";
 import Veterinaria from "./class/veterinaria";
 import * as readlineSync from 'readline-sync';
-import {Readline} from 'readline/promises'
+//import {Readline} from 'readline/promises'
 
 
 export function crearNumRandom(max: number){
@@ -11,11 +11,32 @@ export function crearNumRandom(max: number){
 }
 // Funcion para cargar Cliente 
 
-export function cargarCliente(arrCliente: Array<Cliente>,elemento: string): Array<Cliente>{
+//funcion para verificar si id existe
+ export function existeId(arrCliente:Array<Cliente>,id:number):boolean{
+    let existe:boolean= false;
+    let i:number=0;
+    while((existe==false)&&(i<arrCliente.length)){
+        if(id==arrCliente[i].getId()){
+            existe=true
+        }
+        i=i+1
+    }
+    return existe
+ }
+
+export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     let datos = elemento.split(',');
     let nombre: string = datos[0];
     let telefono: number = Number(datos[1]);
     let id: number = crearNumRandom(5)
+    //let e:boolean=existeId(arrCliente,id)
+
+
+    while(existeId(arrCliente,id)==true){
+      id=crearNumRandom(5);
+    }
+
+
     let numVisitas = 0;
     let nuevoCliente: Cliente = new Cliente(nombre, telefono, id, numVisitas);
     
@@ -34,13 +55,10 @@ export function crearCliente(arrCliente: Array<Cliente>){
     let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
     let id: number = crearNumRandom(5);
     let numVisitas: number = 0;
-
-    for (let i = 0; i< arrCliente.length; i++){
-        if (id == arrCliente[i].getId()){
-            console.log("Id duplicado");
-             id = crearNumRandom(5)  
-        }
+    while(existeId(arrCliente,id)==true){
+      id=crearNumRandom(5);
     }
+    
 
     let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas);
     arrCliente.push(nuevoCliente)
@@ -53,5 +71,8 @@ crearCliente(listaCliente)
 crearCliente(listaCliente)
 crearCliente(listaCliente)
 
-// console.log(listaCliente)
+console.log(listaCliente)
+
+
+
 
