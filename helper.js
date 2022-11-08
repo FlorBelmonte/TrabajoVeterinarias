@@ -7,6 +7,7 @@ function crearNumRandom(max) {
     return Math.floor(Math.random() * max);
 }
 exports.crearNumRandom = crearNumRandom;
+// Funcion para cargar Cliente 
 //Funcion para crear cliente 
 var listaCliente = [];
 function crearCliente(arrCliente) {
@@ -17,8 +18,8 @@ function crearCliente(arrCliente) {
     for (var i = 0; i < arrCliente.length; i++) {
         if (id == arrCliente[i].getId()) {
             console.log("Id duplicado");
+            id = crearNumRandom(5);
         }
-        id = crearNumRandom(5);
     }
     var nuevoCliente = new cliente_1["default"](nombre, telefono, id, numVisitas);
     arrCliente.push(nuevoCliente);
@@ -28,4 +29,6 @@ exports.crearCliente = crearCliente;
 crearCliente(listaCliente);
 crearCliente(listaCliente);
 crearCliente(listaCliente);
-console.log(listaCliente);
+crearCliente(listaCliente);
+crearCliente(listaCliente);
+// console.log(listaCliente)
