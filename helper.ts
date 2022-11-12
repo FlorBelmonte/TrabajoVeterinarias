@@ -1,9 +1,9 @@
 import Cliente from "./class/cliente";
-import Paciente from "./class/paciente";
+import Paciente from './class/paciente';
 import Proveedor from "./class/proveedores";
 import Veterinaria from "./class/veterinaria";
 import * as readlineSync from 'readline-sync';
-//import {Readline} from 'readline/promises'
+import {Readline} from 'readline/promises'
 
 
 export function crearNumRandom(max: number){
@@ -28,7 +28,7 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     let datos = elemento.split(',');
     let nombre: string = datos[0];
     let telefono: number = Number(datos[1]);
-    let id: number = crearNumRandom(5)
+    let id: number = crearNumRandom(5);
     //let e:boolean=existeId(arrCliente,id)
 
 
@@ -53,6 +53,7 @@ let listaCliente: Cliente[] = []
 export function crearCliente(arrCliente: Array<Cliente>){
     let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
     let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
+
     let id: number = crearNumRandom(5);
     let numVisitas: number = 0;
     while(existeId(arrCliente,id)==true){
