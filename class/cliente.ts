@@ -1,3 +1,4 @@
+
 import Paciente from './paciente';
 
 export default class Cliente {
@@ -5,8 +6,10 @@ export default class Cliente {
     private telefono:number;
     private id:number;
     private numVisitas:number;
+
     private mascota: Paciente;
     public constructor(nombre:string, telefono: number,id:number,numVisitas:number, mascota: Paciente){
+
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=id;
