@@ -1,12 +1,11 @@
 "use strict";
 exports.__esModule = true;
 var Cliente = /** @class */ (function () {
-    function Cliente(nombre, telefono, id, numVisitas, paciente) {
+    function Cliente(nombre, telefono, id, numVisitas) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.id = id;
         this.numVisitas = numVisitas;
-        // this.paciente = paciente;
     }
     Cliente.prototype.getNombre = function () {
         return this.nombre;
@@ -19,12 +18,6 @@ var Cliente = /** @class */ (function () {
     };
     Cliente.prototype.getId = function () {
         return this.id;
-    };
-    Cliente.prototype.getPaciente = function () {
-        return this.paciente;
-    };
-    Cliente.prototype.setPaciente = function (nuevoNombre) {
-        this.paciente = nuevoNombre;
     };
     return Cliente;
 }());
