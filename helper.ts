@@ -12,11 +12,11 @@ export function crearNumRandom(max: number){
 // Funcion para cargar Cliente 
 
 //funcion para verificar si id existe
- export function existeId(arrCliente:Array<Cliente>,id:number):boolean{
+ export function existeId(arreglo:Array<Cliente|Proveedor>,id:number):boolean{
     let existe:boolean= false;
     let i:number=0;
-    while((existe==false)&&(i<arrCliente.length)){
-        if(id==arrCliente[i].getId()){
+    while((existe==false)&&(i<arreglo.length)){
+        if(id==arreglo[i].getId()){
             existe=true
         }
         i=i+1
@@ -35,12 +35,10 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     while(existeId(arrCliente,id)==true){
       id=crearNumRandom(5);
     }
-
-
     let numVisitas = 0;
-    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id, numVisitas);
+    // let nuevoCliente: Cliente = new Cliente(nombre, telefono, id, numVisitas);
     
-    arrCliente.push(nuevoCliente)
+    // arrCliente.push(nuevoCliente)
     return arrCliente;
 }
 
@@ -49,6 +47,7 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
 //Funcion para crear cliente 
 
 let listaCliente: Cliente[] = []
+let listaMascotas: Paciente[] = []
 
 export function crearCliente(arrCliente: Array<Cliente>){
     let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
@@ -61,8 +60,8 @@ export function crearCliente(arrCliente: Array<Cliente>){
     }
     
 
-    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas);
-    arrCliente.push(nuevoCliente)
+    // let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas);
+    // arrCliente.push(nuevoCliente)
     console.log(arrCliente)
 }
 
@@ -74,6 +73,24 @@ crearCliente(listaCliente)
 
 console.log(listaCliente)
 
+//Funciones para Proveedores
+//Funcion para cargar proveedor 
+// let arregloProveedores: Proveedor[] = []
+
+// export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string): Array<Proveedor>{
+//     let datos = elemento.split(',');
+//     let nombre: string = datos[0];
+//     let telefono: number = Number(datos[1]);
+//     let id: number = crearNumRandom(5);
+//     //let e:boolean=existeId(arrCliente,id)
 
 
+//     while(existeId(arrCliente,id)==true){
+//       id=crearNumRandom(5);
+//     }
 
+//     let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id);
+    
+//     arrProveedor.push(nuevoProveedor)
+//     return arrProveedor;
+// }

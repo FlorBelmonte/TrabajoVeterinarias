@@ -1,16 +1,20 @@
 export default class Proveedor {
 private nombre: string;
 private telefono: number;
-private idProveedor: number;
+private id: number;
 
-public constructor (nombre:string, telefono: number, idProveedor:number){
+public constructor (nombre:string, telefono: number, id:number){
     this.nombre = nombre;
     this.telefono = telefono;
-    this.idProveedor = idProveedor
+    this.id = id
 }
 
-public setIDProveedor(nuevoID:number):void {
-        this.idProveedor = nuevoID;
+public setId(nuevoId:number):void {
+        this.id = nuevoId;
+}
+
+public getId(): number{
+   return this.id
 }
 }
 
