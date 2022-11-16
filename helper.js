@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.crearProveedor = exports.cargarProveedor = exports.crearCliente = exports.cargarCliente = exports.existeId = exports.crearNumRandom = void 0;
+exports.borrarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.crearCliente = exports.cargarCliente = exports.existeId = exports.crearNumRandom = void 0;
 var proveedores_1 = require("./class/proveedores");
 var readlineSync = require("readline-sync");
 function crearNumRandom(max) {
@@ -49,7 +49,7 @@ function crearCliente(arrCliente) {
     }
     // let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas, ); // acá nos falta agregar una variable de tipo Paciente
     // arrCliente.push(nuevoCliente)
-    console.log(arrCliente);
+    // console.log(arrCliente)
 }
 exports.crearCliente = crearCliente;
 // crearCliente(listaCliente)
@@ -75,10 +75,9 @@ function cargarProveedor(arrProveedor, elemento) {
 }
 exports.cargarProveedor = cargarProveedor;
 function crearProveedor(arrProveedor) {
-    var nombre = readlineSync.question("Ingrese nombre y apellido del cliente: ");
-    var telefono = readlineSync.questionInt("Ingrese el telefono del cliente: ");
+    var nombre = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
+    var telefono = readlineSync.questionInt("Ingrese el telefono del proveedor: ");
     var id = crearNumRandom(5);
-    var numVisitas = 0;
     while (existeId(arrProveedor, id) == true) {
         id = crearNumRandom(5);
     }
@@ -86,9 +85,33 @@ function crearProveedor(arrProveedor) {
     arrProveedor.push(nuevoProveedor);
 }
 exports.crearProveedor = crearProveedor;
+console.log(arregloProveedores);
+// //Funcion para modificar proveedor
+// export function modificarProveedor(arregloProveedores: Array<Proveedor>, posicion: number){
+//   let nombre: string = readlineSync.question("Ingrese el nombre modificado: ");
+//   let telefono: number = readlineSync.question("Ingrese el nuevo telefono: ");
+//   let id: number = readlineSync.question("Ingrese numero de Id")
+//   let proveedorModificado: Proveedor = new Proveedor(nombre, telefono, id)
+//   // delete arregloProveedores[posicion]
+//   arregloProveedores[posicion] = proveedorModificado;
+//   console.log(arregloProveedores)
+// }
+//Funcion para borrar Proveedor 
+function borrarProveedor(proveedor, id) {
+    for (var i = 0; i < proveedor.length; i++) {
+        if (id === proveedor[i].getId()) {
+            proveedor.splice(i, 1);
+        }
+    }
+    console.log(proveedor);
+}
+exports.borrarProveedor = borrarProveedor;
 crearProveedor(arregloProveedores);
 crearProveedor(arregloProveedores);
 crearProveedor(arregloProveedores);
 crearProveedor(arregloProveedores);
 crearProveedor(arregloProveedores);
+console.log(arregloProveedores);
+// modificarProveedor(arregloProveedores, 1) //modifica el proveedor que este en la posicion 1 por ej 
+borrarProveedor(arregloProveedores, 2);
 console.log(arregloProveedores);
