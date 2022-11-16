@@ -6,9 +6,7 @@ var Cliente = /** @class */ (function () {
         this.telefono = telefono;
         this.id = id;
         this.numVisitas = numVisitas;
-
         this.mascota = mascota;
-
     }
     Cliente.prototype.getNombre = function () {
         return this.nombre;
@@ -19,7 +17,6 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
         this.telefono = nuevoTelefono;
     };
-
     Cliente.prototype.getId = function () {
         return this.id;
     };
@@ -29,7 +26,6 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.setMascota = function (nuevaMascota) {
         this.mascota = nuevaMascota;
     };
-
     return Cliente;
 }());
 exports["default"] = Cliente;
