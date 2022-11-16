@@ -60,37 +60,55 @@ export function crearCliente(arrCliente: Array<Cliente>){
     }
     
 
-    // let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas);
+    // let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas, ); // acá nos falta agregar una variable de tipo Paciente
     // arrCliente.push(nuevoCliente)
     console.log(arrCliente)
 }
 
-crearCliente(listaCliente)
-crearCliente(listaCliente)
-crearCliente(listaCliente)
-crearCliente(listaCliente)
-crearCliente(listaCliente)
+// crearCliente(listaCliente)
+// crearCliente(listaCliente)
+// crearCliente(listaCliente)
+// crearCliente(listaCliente)
+// crearCliente(listaCliente)
 
-console.log(listaCliente)
+// console.log(listaCliente)
 
 //Funciones para Proveedores
 //Funcion para cargar proveedor 
-// let arregloProveedores: Proveedor[] = []
+let arregloProveedores: Proveedor[] = []
 
-// export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string): Array<Proveedor>{
-//     let datos = elemento.split(',');
-//     let nombre: string = datos[0];
-//     let telefono: number = Number(datos[1]);
-//     let id: number = crearNumRandom(5);
-//     //let e:boolean=existeId(arrCliente,id)
+export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string): Array<Proveedor>{
+    let datos = elemento.split(',');
+    let nombre: string = datos[0];
+    let telefono: number = Number(datos[1]);
+    let id: number = crearNumRandom(5);
 
 
-//     while(existeId(arrCliente,id)==true){
-//       id=crearNumRandom(5);
-//     }
+    while(existeId(arrProveedor,id)==true){
+      id=crearNumRandom(5);
+    }
 
-//     let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id);
+    let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id);
     
-//     arrProveedor.push(nuevoProveedor)
-//     return arrProveedor;
-// }
+    arrProveedor.push(nuevoProveedor)
+    return arrProveedor;
+}
+    export function crearProveedor(arrProveedor: Array<Proveedor>){
+        let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
+        let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
+    
+        let id: number = crearNumRandom(5);
+        let numVisitas: number = 0;
+        while(existeId(arrProveedor,id)==true){
+          id=crearNumRandom(5);
+        }
+        let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id)
+        arrProveedor.push(nuevoProveedor)
+    }
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+
+console.log(arregloProveedores)
