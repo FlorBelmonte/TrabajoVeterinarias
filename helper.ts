@@ -2,6 +2,7 @@ import Cliente from "./class/cliente";
 import Paciente from './class/paciente';
 import Proveedor from "./class/proveedores";
 import Veterinaria from "./class/veterinaria";
+import Sucursales from "./class/sucursales";
 import * as readlineSync from 'readline-sync';
 import {Readline} from 'readline/promises'
 
@@ -62,13 +63,13 @@ export function crearCliente(arrCliente: Array<Cliente>){
     // console.log(arrCliente)
 }
 
-crearCliente(listaCliente)
-crearCliente(listaCliente)
-crearCliente(listaCliente)
-crearCliente(listaCliente)
-crearCliente(listaCliente)
+// crearCliente(listaCliente)
+// crearCliente(listaCliente)
+// crearCliente(listaCliente)
+// crearCliente(listaCliente)
+// crearCliente(listaCliente)
 
-console.log(listaCliente)
+// console.log(listaCliente)
 
 //Funciones para Proveedores
 //Funcion para cargar proveedor 
@@ -106,9 +107,10 @@ console.log(arregloProveedores)
 export function modificarProveedor(arregloProveedores: Array<Proveedor>, posicion: number){
   let nombre: string = readlineSync.question("Ingrese el nombre modificado: ");
   let telefono: number = readlineSync.question("Ingrese el nuevo telefono: ");
-  let id: number = readlineSync.question("Ingrese numero de Id")
+  let id: number = arregloProveedores[posicion].getId()
+  
   let proveedorModificado: Proveedor = new Proveedor(nombre, telefono, id)
-  // delete arregloProveedores[posicion]
+  delete arregloProveedores[posicion]
   arregloProveedores[posicion] = proveedorModificado;
   console.log(arregloProveedores)
 }
@@ -130,6 +132,5 @@ crearProveedor(arregloProveedores)
 crearProveedor(arregloProveedores)
 crearProveedor(arregloProveedores)
 console.log(arregloProveedores)
-// modificarProveedor(arregloProveedores, 1) //modifica el proveedor que este en la posicion 1 por ej 
-// borrarProveedor(arregloProveedores, 2) // elimina el proveedor que tenga el id 2 
+borrarProveedor(arregloProveedores, 2)
 console.log(arregloProveedores)

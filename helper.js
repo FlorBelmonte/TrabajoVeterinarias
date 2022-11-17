@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.borrarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.crearCliente = exports.cargarCliente = exports.existeId = exports.crearNumRandom = void 0;
+exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.crearCliente = exports.cargarCliente = exports.existeId = exports.crearNumRandom = void 0;
 var proveedores_1 = require("./class/proveedores");
 var readlineSync = require("readline-sync");
 function crearNumRandom(max) {
@@ -87,15 +87,16 @@ function crearProveedor(arrProveedor) {
 exports.crearProveedor = crearProveedor;
 console.log(arregloProveedores);
 // //Funcion para modificar proveedor
-// export function modificarProveedor(arregloProveedores: Array<Proveedor>, posicion: number){
-//   let nombre: string = readlineSync.question("Ingrese el nombre modificado: ");
-//   let telefono: number = readlineSync.question("Ingrese el nuevo telefono: ");
-//   let id: number = readlineSync.question("Ingrese numero de Id")
-//   let proveedorModificado: Proveedor = new Proveedor(nombre, telefono, id)
-//   // delete arregloProveedores[posicion]
-//   arregloProveedores[posicion] = proveedorModificado;
-//   console.log(arregloProveedores)
-// }
+function modificarProveedor(arregloProveedores, posicion) {
+    var nombre = readlineSync.question("Ingrese el nombre modificado: ");
+    var telefono = readlineSync.question("Ingrese el nuevo telefono: ");
+    var id = arregloProveedores[posicion].getId();
+    var proveedorModificado = new proveedores_1["default"](nombre, telefono, id);
+    delete arregloProveedores[posicion];
+    arregloProveedores[posicion] = proveedorModificado;
+    console.log(arregloProveedores);
+}
+exports.modificarProveedor = modificarProveedor;
 //Funcion para borrar Proveedor 
 function borrarProveedor(proveedor, id) {
     for (var i = 0; i < proveedor.length; i++) {
@@ -112,6 +113,5 @@ crearProveedor(arregloProveedores);
 crearProveedor(arregloProveedores);
 crearProveedor(arregloProveedores);
 console.log(arregloProveedores);
-// modificarProveedor(arregloProveedores, 1) //modifica el proveedor que este en la posicion 1 por ej 
 borrarProveedor(arregloProveedores, 2);
 console.log(arregloProveedores);
