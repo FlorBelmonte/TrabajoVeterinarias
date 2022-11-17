@@ -10,7 +10,14 @@ import {Readline} from 'readline/promises'
 export function crearNumRandom(max: number){
     return Math.floor(Math.random() * max)
 }
-// Funcion para cargar Cliente 
+
+//------------------FUNCION PARA PACIENTE-----------------
+export function cargarPaciente(arrPacientes:Array <Paciente>,paciente:string){
+  let datosDelGestor:string []=paciente.split(",");
+}
+
+
+// -----------------FUNCION PARA CLIENTES------------------
 
 //funcion para verificar si id existe
  export function existeId(arreglo:Array<Cliente|Proveedor>,id:number):boolean{
@@ -62,6 +69,7 @@ export function crearCliente(arrCliente: Array<Cliente>){
     // arrCliente.push(nuevoCliente)
     // console.log(arrCliente)
 }
+
 
 // crearCliente(listaCliente)
 // crearCliente(listaCliente)

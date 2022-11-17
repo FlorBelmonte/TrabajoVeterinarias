@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/FlorBelmonte/TrabajoVeterinarias#readme",
   "dependencies": {
-    "@types/node": "^18.11.8",
     "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.9"
   }
 }
