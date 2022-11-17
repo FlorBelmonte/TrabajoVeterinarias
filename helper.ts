@@ -2,6 +2,7 @@ import Cliente from "./class/cliente";
 import Paciente from './class/paciente';
 import Proveedor from "./class/proveedores";
 import Veterinaria from "./class/veterinaria";
+import Sucursales from "./class/sucursales";
 import * as readlineSync from 'readline-sync';
 import {Readline} from 'readline/promises'
 
@@ -42,8 +43,6 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     return arrCliente;
 }
 
-
-
 //Funcion para crear cliente 
 
 let listaCliente: Cliente[] = []
@@ -59,10 +58,9 @@ export function crearCliente(arrCliente: Array<Cliente>){
       id=crearNumRandom(5);
     }
     
-
     // let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas, ); // acá nos falta agregar una variable de tipo Paciente
     // arrCliente.push(nuevoCliente)
-    console.log(arrCliente)
+    // console.log(arrCliente)
 }
 
 // crearCliente(listaCliente)
@@ -83,32 +81,56 @@ export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string)
     let telefono: number = Number(datos[1]);
     let id: number = crearNumRandom(5);
 
-
     while(existeId(arrProveedor,id)==true){
       id=crearNumRandom(5);
     }
-
     let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id);
     
     arrProveedor.push(nuevoProveedor)
     return arrProveedor;
 }
-    export function crearProveedor(arrProveedor: Array<Proveedor>){
-        let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
-        let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
+  export function crearProveedor(arrProveedor: Array<Proveedor>){
+        let nombre: string = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
+        let telefono: number = readlineSync.questionInt("Ingrese el telefono del proveedor: ");
     
         let id: number = crearNumRandom(5);
-        let numVisitas: number = 0;
         while(existeId(arrProveedor,id)==true){
           id=crearNumRandom(5);
         }
         let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id)
         arrProveedor.push(nuevoProveedor)
     }
-crearProveedor(arregloProveedores)
-crearProveedor(arregloProveedores)
-crearProveedor(arregloProveedores)
-crearProveedor(arregloProveedores)
-crearProveedor(arregloProveedores)
 
+
+console.log(arregloProveedores)
+// //Funcion para modificar proveedor
+export function modificarProveedor(arregloProveedores: Array<Proveedor>, posicion: number){
+  let nombre: string = readlineSync.question("Ingrese el nombre modificado: ");
+  let telefono: number = readlineSync.question("Ingrese el nuevo telefono: ");
+  let id: number = arregloProveedores[posicion].getId()
+  
+  let proveedorModificado: Proveedor = new Proveedor(nombre, telefono, id)
+  delete arregloProveedores[posicion]
+  arregloProveedores[posicion] = proveedorModificado;
+  console.log(arregloProveedores)
+}
+
+//Funcion para borrar Proveedor 
+
+export function borrarProveedor(proveedor: Array< Proveedor>, id: number){ 
+  for (let i= 0; i< proveedor.length; i++){
+    if (id === proveedor[i].getId()){
+            proveedor.splice(i,1)
+    }
+}
+console.log(proveedor)
+}
+
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+console.log(arregloProveedores)
+borrarProveedor(arregloProveedores, 2)
 console.log(arregloProveedores)
