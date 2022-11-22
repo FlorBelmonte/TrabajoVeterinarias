@@ -1,18 +1,25 @@
 "use strict";
 exports.__esModule = true;
 var Cliente = /** @class */ (function () {
-    function Cliente(nombre, telefono, id, numVisitas, mascota) {
+    function Cliente(nombre, telefono, id, cantVisitas, mascota) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.id = id;
-        this.numVisitas = numVisitas;
+        this.cantVisitas = cantVisitas;
         this.mascota = mascota;
     }
     Cliente.prototype.getNombre = function () {
         return this.nombre;
     };
-    Cliente.prototype.getNumVisitas = function () {
-        return this.numVisitas;
+    Cliente.prototype.getCantVisitas = function () {
+        var visitas = 0;
+        for (var i = 1; i >= 5; i++) {
+            if (visitas = 1) {
+                visitas++;
+            }
+        }
+        console.log("El cliente ".concat(this.getNombre, " tiene mas de 5 visitas a la Veterinaria, es cliente Vip"));
+        return visitas;
     };
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
         this.telefono = nuevoTelefono;
