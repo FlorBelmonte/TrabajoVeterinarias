@@ -1,12 +1,21 @@
 "use strict";
 exports.__esModule = true;
 var Cliente = /** @class */ (function () {
+<<<<<<< HEAD
     function Cliente(nombre, telefono, id, cantVisitas, mascota) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.id = id;
         this.cantVisitas = cantVisitas;
         this.mascota = mascota;
+=======
+    function Cliente(nombre, telefono, id, numVisitas) {
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.id = id;
+        this.numVisitas = numVisitas;
+        this.listaMascotas = [];
+>>>>>>> noe
     }
     Cliente.prototype.getNombre = function () {
         return this.nombre;
@@ -24,14 +33,16 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
         this.telefono = nuevoTelefono;
     };
+    Cliente.prototype.esClienteVip = function () {
+        if (this.numVisitas >= 5) {
+            console.log("El cliente es Vip");
+        }
+    };
     Cliente.prototype.getId = function () {
         return this.id;
     };
-    Cliente.prototype.getMascota = function () {
-        return this.mascota;
-    };
-    Cliente.prototype.setMascota = function (nuevaMascota) {
-        this.mascota = nuevaMascota;
+    Cliente.prototype.getListaMascotas = function () {
+        return this.listaMascotas;
     };
     return Cliente;
 }());
