@@ -27,7 +27,7 @@ export default class Cliente {
     public setTelefono(nuevoTelefono:number):void{
         this.telefono=nuevoTelefono
     }
-<<<<<<< HEAD
+
 
     public esClienteVip(): void{
         if (this.numVisitas>=5){
@@ -35,9 +35,9 @@ export default class Cliente {
         }
     }
 
-}
 
-=======
+
+
     public getId(): number{
         return this.id
     }
@@ -47,5 +47,7 @@ export default class Cliente {
     public setMascota(nuevaMascota: Paciente): void {
         this.mascota = nuevaMascota;
     }
+
 }
->>>>>>> RamaFlor2
+
+

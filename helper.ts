@@ -4,7 +4,7 @@ import Proveedor from "./class/proveedores";
 import Veterinaria from "./class/veterinaria";
 import Sucursales from "./class/sucursales";
 import * as readlineSync from 'readline-sync';
-import {Readline} from 'readline/promises'
+//import {Readline} from 'readline/promises'
 
 
 export function crearNumRandom(max: number){
@@ -12,12 +12,8 @@ export function crearNumRandom(max: number){
 }
 
 //------------------FUNCION PARA PACIENTE-----------------
-
 export function cargarPaciente(arrPacientes:Array <Paciente>,paciente:string){
-  let datos:string []=paciente.split(",");
-  let nombre:string=datos[0];
-  let especie:string=datos[1];
-  let id:number
+  let datosDelGestor:string []=paciente.split(",");
 }
 
 

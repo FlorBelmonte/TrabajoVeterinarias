@@ -8,14 +8,12 @@ export default class Veterinaria {
     private direccion: string;
     private listaClientes: Array<Cliente>;
     private listaPacientes: Array<Paciente>;
-    private listaProveedores: Array<Proveedor>;
 
-    public constructor (nombre: string, direccion: string, listaClientes: Array<Cliente>, listaPacientes: Array<Paciente>, listaProveedores: Array<Proveedor>){
+    public constructor (nombre: string, direccion: string, listaClientes: Array<Cliente>, listaPacientes: Array<Paciente>){
         this.nombre= nombre;
         this.direccion = direccion;
         this.listaClientes = listaClientes;
         listaPacientes = listaPacientes;
-        listaProveedores = listaProveedores;
     }
 
     public getListaClientes() {
@@ -24,17 +22,12 @@ export default class Veterinaria {
     public getListaPacientes() {
         return this.listaPacientes;
     }
-    public getListaProveedores() {
-        return this.listaProveedores;
-    }
+
 
     public setListaClientes(arreglo: Array<Cliente>){
         this.listaClientes = arreglo;
     }
     public setListaPacientes(arreglo: Array<Paciente>){
         this.listaPacientes = arreglo;
-    }
-    public setListaProveedores(arreglo: Array<Proveedor>){
-        this.listaProveedores = arreglo;
     }
 }
