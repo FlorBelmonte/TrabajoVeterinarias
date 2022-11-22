@@ -1,12 +1,12 @@
 export default class Paciente{
     private nombre: string;
     private especie: string;
-    private id: number; //Debe coincidir con el id del cliente
+    private idDeCliente: number; //Debe coincidir con el id del cliente
 
-    public constructor(nombre: string, especie: string, id: number){
+    public constructor(nombre: string, especie: string, idDeCliente: number){
         this.nombre = nombre;
         this.especie = especie;
-        this.id = id;
+        this.idDeCliente = idDeCliente;
     }
 
     public getNombre(){
