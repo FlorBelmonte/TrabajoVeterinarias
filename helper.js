@@ -107,11 +107,12 @@ function borrarProveedor(proveedor, id) {
     console.log(proveedor);
 }
 exports.borrarProveedor = borrarProveedor;
-crearProveedor(arregloProveedores);
-crearProveedor(arregloProveedores);
-crearProveedor(arregloProveedores);
-crearProveedor(arregloProveedores);
-crearProveedor(arregloProveedores);
-console.log(arregloProveedores);
-borrarProveedor(arregloProveedores, 2);
-console.log(arregloProveedores);
+/*
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+console.log(arregloProveedores)
+borrarProveedor(arregloProveedores, 2)
+console.log(arregloProveedores)*/

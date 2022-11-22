@@ -16,6 +16,6 @@ for(let i : number = 0; i < datosProveedores.getArregloString().length; i++){
 }
 
 console.log(arregloProveedores)
-borrarProveedor(arregloProveedores, 1)
-// modificarProveedor(arregloProveedores, 2)
+//borrarProveedor(arregloProveedores, 1)
+modificarProveedor(arregloProveedores, 2)
 console.log(arregloProveedores)

@@ -125,7 +125,7 @@ export function borrarProveedor(proveedor: Array< Proveedor>, id: number){
 }
 console.log(proveedor)
 }
-
+/*
 crearProveedor(arregloProveedores)
 crearProveedor(arregloProveedores)
 crearProveedor(arregloProveedores)
@@ -133,4 +133,4 @@ crearProveedor(arregloProveedores)
 crearProveedor(arregloProveedores)
 console.log(arregloProveedores)
 borrarProveedor(arregloProveedores, 2)
-console.log(arregloProveedores)
+console.log(arregloProveedores)*/
