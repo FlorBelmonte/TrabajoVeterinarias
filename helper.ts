@@ -4,7 +4,7 @@ import Proveedor from "./class/proveedores";
 import Veterinaria from "./class/veterinaria";
 import Sucursales from "./class/sucursales";
 import * as readlineSync from 'readline-sync';
-//import {Readline} from 'readline/promises'
+import {Readline} from 'readline/promises'
 
 
 export function crearNumRandom(max: number){
