@@ -5,15 +5,15 @@ export default class Cliente {
     private nombre:string;
     private telefono:number;
     private id:number;
-    private cantVisitas:number;
-    private mascota: Paciente;
+    private numVisitas:number;
 
-    public constructor(nombre:string, telefono: number,id:number, cantVisitas:number, mascota: Paciente){
+    private mascota: Paciente;
+    public constructor(nombre:string, telefono: number,id:number,numVisitas:number, mascota: Paciente){
 
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=id;
-        this.cantVisitas=cantVisitas
+        this.numVisitas=numVisitas
         this.mascota= mascota;
     }
 
@@ -21,16 +21,30 @@ export default class Cliente {
         return this.nombre
     }
 
+    public getNumVisitas():number{
+        return this.numVisitas
+    }
     public setTelefono(nuevoTelefono:number):void{
         this.telefono=nuevoTelefono
+    }
+    public esClienteVip(): void{
+        if (this.cantidadDeVisitas>=5){
+            console.log("El cliente es Vip")
+        }
     }
     public getId(): number{
         return this.id
     }
-    public getMascota(){
-        return this.mascota
+    public getListaMascotas(){
+        return this.listaMascotas
     }
-    public setMascota(nuevaMascota: Paciente): void {
-        this.mascota = nuevaMascota;
+
+
+    public agregarListaMascota(nuevaMascota: Paciente): void {
+        
+       this.listaMascotas.push(nuevaMascota)
     }
+
 }
+
+

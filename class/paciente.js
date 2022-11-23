@@ -1,10 +1,10 @@
 "use strict";
 exports.__esModule = true;
 var Paciente = /** @class */ (function () {
-    function Paciente(nombre, especie, id) {
+    function Paciente(nombre, especie, idDeCliente) {
         this.nombre = nombre;
         this.especie = especie;
-        this.id = id;
+        this.idDeCliente = idDeCliente;
     }
     Paciente.prototype.getNombre = function () {
         return this.nombre;
