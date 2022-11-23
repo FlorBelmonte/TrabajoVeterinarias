@@ -15,7 +15,7 @@ export default class Veterinaria {
         this.direccion = direccion;
         this.id = id;
         this.listaClientes = listaClientes;
-        listaPacientes = listaPacientes;
+        this.listaPacientes = listaPacientes;
     }
 
     public getListaClientes() {
