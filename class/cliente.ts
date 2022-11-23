@@ -11,7 +11,7 @@ export default class Cliente {
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=id;
-        this.cantidadDeVisitas=numVisitas
+        this.cantidadDeVisitas=0;
         this.listaMascotas=[];
     }
     public getNombre():string{
@@ -19,6 +19,9 @@ export default class Cliente {
     }
     public getNumVisitas():number{
         return this.cantidadDeVisitas
+    }
+    public setNumVisitas(nuevasVisitas:number):void{
+        this.cantidadDeVisitas=nuevasVisitas
     }
     public setTelefono(nuevoTelefono:number):void{
         this.telefono=nuevoTelefono

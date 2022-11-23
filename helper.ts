@@ -48,8 +48,8 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
 
 //-----------Funcion para crear cliente nuevo--------
 
-let listaCliente: Cliente[] = []
-let listaMascotas: Paciente[] = []
+export let listaCliente: Cliente[] = []
+export let listaMascotas: Paciente[] = []
 
 export function crearCliente(arrCliente: Array<Cliente>){
     let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
@@ -140,7 +140,7 @@ export function borrarProveedor(proveedor: Array< Proveedor>, id: number){
 }
 console.log(proveedor)
 }
-
+/* Comento la priueba para crear y orrar proveedores
 crearProveedor(arregloProveedores)
 crearProveedor(arregloProveedores)
 crearProveedor(arregloProveedores)
@@ -149,3 +149,19 @@ crearProveedor(arregloProveedores)
 console.log(arregloProveedores)
 borrarProveedor(arregloProveedores, 2)
 console.log(arregloProveedores)
+*/
+
+//-----------Funcion para cliente VIP--------
+
+export function contadorVIP(customer: Cliente){ 
+  let visitas: number = customer.getNumVisitas();
+      if (visitas < 5){
+          customer.setNumVisitas (visitas+1)
+          console.log ("El cliente aun no es VIP")
+          
+    }
+    else {
+      console.log ("es cliente VIP")
+    }
+    
+}
