@@ -40,7 +40,7 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     }
     let numVisitas = 0;
     
-    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id, numVisitas);
+    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id, numVisitas, );
     
     arrCliente.push(nuevoCliente)
     return arrCliente;
@@ -78,7 +78,7 @@ export function crearPaciente(arrPacientes:Array <Paciente>,arregloCliente:Array
   arrPacientes.push(nuevoPaciente);
   //arregloCliente.agregarListaMascota(nuevoPaciente)//Aca tengo que agregar el paciente a la lista de mascotas del Cliente
 
-
+}
 //Funcion para cargar Paciente desde el Gestor de Archivos
 
 export function cargarPaciente(arrPacientes:Array <Paciente>,paciente:string){
