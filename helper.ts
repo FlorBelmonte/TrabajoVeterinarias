@@ -40,7 +40,7 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     }
     
     
-    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id, numVisitas);
+    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id);
     
     arrCliente.push(nuevoCliente)
     return arrCliente;
