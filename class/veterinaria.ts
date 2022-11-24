@@ -30,7 +30,7 @@ export default class Veterinaria {
     public setId(nuevoId:number):void {
         this.id = nuevoId;
     }
-    
+
     public setListaClientes(arreglo: Array<Cliente>){
         this.listaClientes = arreglo;
     }
