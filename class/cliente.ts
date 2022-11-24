@@ -40,10 +40,10 @@ export default class Cliente {
     }
 
 
-    public agregarListaMascota(nuevaMascota: Paciente): void {
+    // public agregarListaMascota(nuevaMascota: Paciente): void {
         
-       this.listaMascotas.push(nuevaMascota)
-    }
+    //    this.listaMascotas.push(nuevaMascota)
+    // }
 
 }
 

@@ -7,29 +7,36 @@ import Veterinaria from './class/veterinaria';
 import Sucursales from './class/sucursales';
 import GestorDeArchivos from './class/GestorDeArchivos';
 
-let arregloProveedores: Proveedor[] = [];
+// let arregloProveedores: Proveedor[] = [];
 
-let datosProveedores: GestorDeArchivos = new GestorDeArchivos('./txt/proveedores.txt');
+// let datosProveedores: GestorDeArchivos = new GestorDeArchivos('./txt/proveedores.txt');
 
-for(let i : number = 0; i < datosProveedores.getArregloString().length; i++){
-    cargarProveedor(arregloProveedores, datosProveedores.getArregloString()[i]);
-}
+// for(let i : number = 0; i < datosProveedores.getArregloString().length; i++){
+//     cargarProveedor(arregloProveedores, datosProveedores.getArregloString()[i]);
+// }
 
-console.log(arregloProveedores)
-borrarProveedor(arregloProveedores, 1)
-// modificarProveedor(arregloProveedores, 2)
-console.log(arregloProveedores)
+// console.log(arregloProveedores)
+// borrarProveedor(arregloProveedores, 1)
+// // modificarProveedor(arregloProveedores, 2)
+// console.log(arregloProveedores)
 
 let listaClientes: Cliente[] = [];
 let listaGeneralMascotas: Paciente []=[];
 crearCliente(listaClientes)
 crearCliente(listaClientes)
 
-console.log(listaClientes)
+//console.log(listaClientes)
 
 crearPaciente(listaGeneralMascotas,listaClientes)
+crearPaciente(listaGeneralMascotas,listaClientes)
+
 console.log(listaClientes)
+
 console.log(listaGeneralMascotas)
+console.log(JSON.stringify(listaClientes))
+
+
+
 
 
 
