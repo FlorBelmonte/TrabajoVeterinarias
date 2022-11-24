@@ -38,9 +38,9 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     while(existeId(arrCliente,id)==true){
       id=crearNumRandom(5);
     }
-    let numVisitas = 0;
     
-    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id, numVisitas);
+    
+    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id);
     
     arrCliente.push(nuevoCliente)
     return arrCliente;
@@ -48,20 +48,22 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
 
 //-----------Funcion para crear cliente nuevo--------
 
-let listaCliente: Cliente[] = []
-let listaMascotas: Paciente[] = []
+export let listaClientes: Cliente[] = []
+export let listaMascotas: Paciente[] = []
 
 export function crearCliente(arrCliente: Array<Cliente>){
     let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
     let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
     
     let id: number = crearNumRandom(5);
-    let numVisitas: number = 0;
+    
     while(existeId(arrCliente,id)==true){
       id=crearNumRandom(5);
     }
     
-    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas); // acá nos falta agregar una variable de tipo Paciente
+
+    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id,  ); // acá nos falta agregar una variable de tipo Paciente
+
     arrCliente.push(nuevoCliente)
     console.log(arrCliente)
 }
@@ -90,6 +92,7 @@ export function crearPaciente(arrPacientes:Array <Paciente>,arrCliente:Array <Cl
   //arregloCliente.agregarListaMascota(nuevoPaciente)//Aca tengo que agregar el paciente a la lista de mascotas del Cliente
 
 }
+
   //Funcion buscar por id a un cliente
  
   export function buscarPorId(arreglo:Array<Cliente|Proveedor>,id:number){
@@ -106,6 +109,7 @@ export function crearPaciente(arrPacientes:Array <Paciente>,arrCliente:Array <Cl
     }
     return ubicacion
   }
+
 
 //Funcion para cargar Paciente desde el Gestor de Archivos
 
@@ -172,12 +176,28 @@ export function borrarProveedor(proveedor: Array< Proveedor>, id: number){
 }
 console.log(proveedor)
 }
+/* Comento la priueba para crear y orrar proveedores
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+console.log(arregloProveedores)
+borrarProveedor(arregloProveedores, 2)
+console.log(arregloProveedores)
+*/
 
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// console.log(arregloProveedores)
-// borrarProveedor(arregloProveedores, 2)
-// console.log(arregloProveedores)
+//-----------Funcion para cliente VIP--------
+
+export function contadorVIP(customer: Cliente){ 
+  let visitas: number = customer.getNumVisitas();
+      if (visitas < 5){
+          customer.setNumVisitas (visitas++)
+          console.log ("El cliente aun no es VIP")
+          
+    }
+    else {
+      console.log ("es cliente VIP")
+    }
+    
+}

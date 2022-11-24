@@ -6,8 +6,9 @@ var Cliente = /** @class */ (function () {
         this.telefono = telefono;
         this.id = id;
 
-        this.cantidadDeVisitas = numVisitas;
-        this.listaMascotas = [];
+        ths.cantidadDeVisitas = 0;
+        this.listaMascotas = [];i
+
 
     }
     Cliente.prototype.getNombre = function () {
@@ -16,6 +17,11 @@ var Cliente = /** @class */ (function () {
 
     Cliente.prototype.getNumVisitas = function () {
         return this.cantidadDeVisitas;
+
+    };
+    Cliente.prototype.setNumVisitas = function (nuevasVisitas) {
+        this.cantidadDeVisitas = nuevasVisitas;
+
 
     };
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
@@ -31,6 +37,9 @@ var Cliente = /** @class */ (function () {
     };
     Cliente.prototype.getListaMascotas = function () {
         return this.listaMascotas;
+    };
+    Cliente.prototype.agregarListaMascota = function (nuevaMascota) {
+        this.listaMascotas.push(nuevaMascota);
     };
     return Cliente;
 }());
