@@ -15,7 +15,7 @@ export function crearNumRandom(max: number){
 // -----------------FUNCION PARA CLIENTES------------------
 
 //funcion para verificar si id existe
- export function existeId(arreglo:Array<Cliente|Proveedor>,id:number):boolean{
+ export function existeId(arreglo:Array<Cliente|Proveedor|Veterinaria>,id:number):boolean{
     let existe:boolean= false;
     let i:number=0;
     while((existe==false)&&(i<arreglo.length)){
@@ -150,7 +150,7 @@ export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string)
 
 
 console.log(arregloProveedores)
-// //Funcion para modificar proveedor
+//Funcion para modificar proveedor
 export function modificarProveedor(arregloProveedores: Array<Proveedor>, posicion: number){
   let nombre: string = readlineSync.question("Ingrese el nombre modificado: ");
   let telefono: number = readlineSync.questionInt("Ingrese el nuevo telefono: ");
