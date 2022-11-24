@@ -25,11 +25,18 @@ let listaGeneralMascotas: Paciente []=[];
 crearCliente(listaClientes)
 crearCliente(listaClientes)
 
-console.log(listaClientes)
+//console.log(listaClientes)
 
 crearPaciente(listaGeneralMascotas,listaClientes)
+crearPaciente(listaGeneralMascotas,listaClientes)
+
 console.log(listaClientes)
+
 console.log(listaGeneralMascotas)
+console.log(JSON.stringify(listaClientes))
+
+
+
 
 
 
