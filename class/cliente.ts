@@ -38,7 +38,9 @@ export default class Cliente {
     public getListaMascotas(){
         return this.listaMascotas
     }
+
     public agregarListaMascota(nuevaMascota: Paciente): void {
        this.listaMascotas.push(nuevaMascota)
     }
 }
+

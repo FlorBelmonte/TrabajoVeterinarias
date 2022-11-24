@@ -5,8 +5,10 @@ var Cliente = /** @class */ (function () {
         this.nombre = nombre;
         this.telefono = telefono;
         this.id = id;
+
         ths.cantidadDeVisitas = 0;
         this.listaMascotas = [];i
+
 
     }
     Cliente.prototype.getNombre = function () {
@@ -15,9 +17,11 @@ var Cliente = /** @class */ (function () {
 
     Cliente.prototype.getNumVisitas = function () {
         return this.cantidadDeVisitas;
+
     };
     Cliente.prototype.setNumVisitas = function (nuevasVisitas) {
         this.cantidadDeVisitas = nuevasVisitas;
+
 
     };
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
