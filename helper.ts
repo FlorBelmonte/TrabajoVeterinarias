@@ -38,9 +38,9 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     while(existeId(arrCliente,id)==true){
       id=crearNumRandom(5);
     }
-    let numVisitas = 0;
     
-    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id, numVisitas);
+    
+    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id);
     
     arrCliente.push(nuevoCliente)
     return arrCliente;
@@ -48,7 +48,7 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
 
 //-----------Funcion para crear cliente nuevo--------
 
-export let listaCliente: Cliente[] = []
+export let listaClientes: Cliente[] = []
 export let listaMascotas: Paciente[] = []
 
 export function crearCliente(arrCliente: Array<Cliente>){
@@ -56,12 +56,12 @@ export function crearCliente(arrCliente: Array<Cliente>){
     let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
     
     let id: number = crearNumRandom(5);
-    let numVisitas: number = 0;
+    
     while(existeId(arrCliente,id)==true){
       id=crearNumRandom(5);
     }
     
-    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas, ); // acá nos falta agregar una variable de tipo Paciente
+    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id,  ); // acá nos falta agregar una variable de tipo Paciente
     arrCliente.push(nuevoCliente)
     console.log(arrCliente)
 }
@@ -156,7 +156,7 @@ console.log(arregloProveedores)
 export function contadorVIP(customer: Cliente){ 
   let visitas: number = customer.getNumVisitas();
       if (visitas < 5){
-          customer.setNumVisitas (visitas+1)
+          customer.setNumVisitas (visitas++)
           console.log ("El cliente aun no es VIP")
           
     }

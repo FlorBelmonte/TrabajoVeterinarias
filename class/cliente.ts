@@ -7,7 +7,7 @@ export default class Cliente {
     private id:number;
     private cantidadDeVisitas:number;
     private listaMascotas:Array <Paciente>;
-    public constructor(nombre:string, telefono: number,id:number,numVisitas:number){
+    public constructor(nombre:string, telefono: number,id:number){
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=id;

@@ -5,7 +5,7 @@ import * as readlineSync from 'readline-sync';
 import { clear } from "console";
 
 
-let cliente1:Cliente = new Cliente ("jose",454555,3,0);
+let cliente1:Cliente = new Cliente ("jose",454555,3);
 
 contadorVIP (cliente1);
 contadorVIP (cliente1);

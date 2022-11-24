@@ -43,7 +43,7 @@ console.log(listaGeneralMascotas)
 // let datosClientes: GestorDeArchivos = new GestorDeArchivos('./txt/clientes.txt');
 
 // for(let i : number = 0; i < datosClientes.getArregloString().length; i++){
-//     cargarCliente(listaCliente, datosProveedores.getArregloString()[i]);
+//     cargarCliente(listaClientes, datosProveedores.getArregloString()[i]);
 // }
 
 console.log(arregloProveedores)
