@@ -1,6 +1,8 @@
 "use strict";
 exports.__esModule = true;
-exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.cargarPaciente = exports.crearPaciente = exports.crearCliente = exports.cargarCliente = exports.existeId = exports.crearNumRandom = void 0;
+
+exports.contadorVIP = exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.cargarPaciente = exports.crearPaciente = exports.crearCliente = exports.listaMascotas = exports.listaCliente = exports.cargarCliente = exports.existeId = exports.crearNumRandom = void 0;
+
 var cliente_1 = require("./class/cliente");
 var paciente_1 = require("./class/paciente");
 var proveedores_1 = require("./class/proveedores");
@@ -40,8 +42,8 @@ function cargarCliente(arrCliente, elemento) {
 }
 exports.cargarCliente = cargarCliente;
 //-----------Funcion para crear cliente nuevo--------
-var listaCliente = [];
-var listaMascotas = [];
+exports.listaCliente = [];
+exports.listaMascotas = [];
 function crearCliente(arrCliente) {
     var nombre = readlineSync.question("Ingrese nombre y apellido del cliente: ");
     var telefono = readlineSync.questionInt("Ingrese el telefono del cliente: ");
@@ -57,15 +59,38 @@ function crearCliente(arrCliente) {
 exports.crearCliente = crearCliente;
 //------------------FUNCION PARA PACIENTE-----------------
 //Fubcion para crear nuevo paciente
-function crearPaciente(arrPacientes, arrCliente) {
+function crearPaciente(arrPacientes, arregloCliente) {
     var nombre = readlineSync.question("Ingrese el nombre del paciente: ");
     var especie = readlineSync.question("Ingrese la especie del Paciente: ");
     var idDeCliente = readlineSync.questionInt("Ingrese id del Cliente: ");
+    // if (existeId(arrCliente,idDeCliente)==false){
+    //   let idDeCliente=readlineSync.questionInt("Id ingresado no existe, ingrese nuevmente un numero: ");
+    // }
+    var ubicacionId = buscarPorId(arrCliente, idDeCliente);
     var nuevoPaciente = new paciente_1["default"](nombre, especie, idDeCliente);
     arrPacientes.push(nuevoPaciente);
-    listaMascotas.push(nuevoPaciente);
+
+
+    //arregloCliente.agregarListaMascota(nuevoPaciente)//Aca tengo que agregar el paciente a la lista de mascotas del Cliente
 }
 exports.crearPaciente = crearPaciente;
+//Funcion buscar por id a un cliente
+function buscarPorId(arreglo, id) {
+    var ubicacion = -1;
+    var ok = false;
+    var i = 0;
+    while ((ok == false) && (i < arreglo.length)) {
+        if (id == arreglo[i].getId()) {
+            ubicacion = i;
+            ok = true;
+        }
+        else {
+            i = i + 1;
+        }
+    }
+    return ubicacion;
+}
+exports.buscarPorId = buscarPorId;
 //Funcion para cargar Paciente desde el Gestor de Archivos
 function cargarPaciente(arrPacientes, paciente) {
     var datosDelGestor = paciente.split(",");
@@ -99,7 +124,7 @@ function crearProveedor(arrProveedor) {
 }
 exports.crearProveedor = crearProveedor;
 console.log(arregloProveedores);
-// //Funcion para modificar proveedor
+//Funcion para modificar proveedor
 function modificarProveedor(arregloProveedores, posicion) {
     var nombre = readlineSync.question("Ingrese el nombre modificado: ");
     var telefono = readlineSync.questionInt("Ingrese el nuevo telefono: ");
@@ -120,11 +145,25 @@ function borrarProveedor(proveedor, id) {
     console.log(proveedor);
 }
 exports.borrarProveedor = borrarProveedor;
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// console.log(arregloProveedores)
-// borrarProveedor(arregloProveedores, 2)
-// console.log(arregloProveedores)
+/* Comento la priueba para crear y orrar proveedores
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+crearProveedor(arregloProveedores)
+console.log(arregloProveedores)
+borrarProveedor(arregloProveedores, 2)
+console.log(arregloProveedores)
+*/
+//-----------Funcion para cliente VIP--------
+function contadorVIP(customer) {
+    var visitas = customer.getNumVisitas();
+    if (visitas < 5) {
+        customer.setNumVisitas(visitas + 1);
+        console.log("El cliente aun no es VIP");
+    }
+    else {
+        console.log("es cliente VIP");
+    }
+}
+exports.contadorVIP = contadorVIP;

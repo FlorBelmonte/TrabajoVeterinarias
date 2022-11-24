@@ -20,16 +20,29 @@ borrarProveedor(arregloProveedores, 1)
 // modificarProveedor(arregloProveedores, 2)
 console.log(arregloProveedores)
 
-let listaClientes: Cliente[] = [];
-let listaGeneralMascotas: Paciente []=[];
-crearCliente(listaClientes)
-crearCliente(listaClientes)
+export let listaClientes: Cliente[] = [];
+let datosClientes: GestorDeArchivos = new GestorDeArchivos('./txt/clientes.txt');
 
-console.log(listaClientes)
+for(let i : number = 0; i < datosClientes.getArregloString().length; i++){
+    cargarCliente(listaClientes, datosProveedores.getArregloString()[i]);
+}
+
+let listaGeneralMascotas: Paciente []=[];
+//crearCliente(listaClientes)
+//crearCliente(listaClientes)
+
+//console.log(listaClientes)
 
 crearPaciente(listaGeneralMascotas,listaClientes)
+crearPaciente(listaGeneralMascotas,listaClientes)
+
 console.log(listaClientes)
+
 console.log(listaGeneralMascotas)
+console.log(JSON.stringify(listaClientes))
+
+
+
 
 
 
@@ -37,7 +50,10 @@ console.log(listaGeneralMascotas)
 // let datosClientes: GestorDeArchivos = new GestorDeArchivos('./txt/clientes.txt');
 
 // for(let i : number = 0; i < datosClientes.getArregloString().length; i++){
-//     cargarCliente(listaCliente, datosProveedores.getArregloString()[i]);
+//     cargarCliente(listaClientes, datosProveedores.getArregloString()[i]);
 // }
 
-// console.log(arregloProveedores)
+console.log(arregloProveedores)
+borrarProveedor(arregloProveedores, 1)
+// modificarProveedor(arregloProveedores, 2)
+console.log(arregloProveedores)
