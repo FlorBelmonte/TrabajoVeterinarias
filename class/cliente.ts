@@ -5,25 +5,34 @@ export default class Cliente {
     private nombre:string;
     private telefono:number;
     private id:number;
+
     private cantidadDeVisitas:number;
     private listaMascotas:Array<Paciente>
 
    
+    
     public constructor(nombre:string, telefono: number,id:number){
-
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=id;
         this.cantidadDeVisitas=0;
         this.listaMascotas=[];
     }
-
     public getNombre():string{
         return this.nombre
     }
 
+
     public getCantidadDeVisitas():number{
         return this.cantidadDeVisitas
+    }
+
+    public getNumVisitas():number{
+        return this.cantidadDeVisitas
+    }
+    public setNumVisitas(nuevasVisitas:number):void{
+        this.cantidadDeVisitas=nuevasVisitas
+
     }
     public setTelefono(nuevoTelefono:number):void{
         this.telefono=nuevoTelefono
@@ -41,10 +50,10 @@ export default class Cliente {
     }
 
 
-    // public agregarListaMascota(nuevaMascota: Paciente): void {
+    public agregarListaMascota(nuevaMascota: Paciente): void {
         
-    //    this.listaMascotas.push(nuevaMascota)
-    // }
+       this.listaMascotas.push(nuevaMascota)
+    }
 
 }
 

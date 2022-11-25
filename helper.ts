@@ -4,7 +4,7 @@ import Proveedor from "./class/proveedores";
 import Veterinaria from "./class/veterinaria";
 import Sucursales from "./class/sucursales";
 import * as readlineSync from 'readline-sync';
-//import {Readline} from 'readline/promises'
+import {Readline} from 'readline/promises'
 
 
 export function crearNumRandom(max: number){
@@ -38,8 +38,8 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     while(existeId(arrCliente,id)==true){
       id=crearNumRandom(5);
     }
-    let numVisitas = 0;
     
+
     let nuevoCliente: Cliente = new Cliente(nombre, telefono, id);
     
     arrCliente.push(nuevoCliente)
@@ -48,20 +48,41 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
 
 //-----------Funcion para crear cliente nuevo--------
 
-let listaCliente: Cliente[] = []
-let listaMascotas: Paciente[] = []
+export let listaClientes: Cliente[] = []
+export let listaMascotas: Paciente[] = []
 
 export function crearCliente(arrCliente: Array<Cliente>){
     let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
     let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
     
     let id: number = crearNumRandom(5);
+
     while(existeId(arrCliente,id)==true){
       id=crearNumRandom(5);
     }
     
-    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id); 
+
+
+    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id,  );
+
+    arrCliente.push(nuevoCliente)
+
     console.log(arrCliente)
+}
+
+//-----------Funcion para cliente VIP--------
+
+export function contadorVIP(customer: Cliente){ 
+  let visitas: number = customer.getNumVisitas();
+      if (visitas < 5){
+          customer.setNumVisitas (visitas++)
+          console.log ("El cliente aun no es VIP")
+          
+    }
+    else {
+      console.log ("es cliente VIP")
+    }
+    
 }
 
 //------------------FUNCION PARA PACIENTE-----------------
@@ -88,6 +109,7 @@ export function crearPaciente(arrPacientes:Array <Paciente>,arrCliente:Array <Cl
   //arregloCliente.agregarListaMascota(nuevoPaciente)//Aca tengo que agregar el paciente a la lista de mascotas del Cliente
 
 }
+
   //Funcion buscar por id a un cliente
  
   export function buscarPorId(arreglo:Array<Cliente|Proveedor>,id:number){
@@ -104,16 +126,6 @@ export function crearPaciente(arrPacientes:Array <Paciente>,arrCliente:Array <Cl
     }
     return ubicacion
   }
-
-//Funcion para cargar Paciente desde el Gestor de Archivos
-
-export function cargarPaciente(arrPacientes:Array <Paciente>,paciente:string){
-  let datosDelGestor:string []=paciente.split(",");
-}
-
-
-
-
 
 //------------------FUNCIONES PARA PROVEEDORES-----------
 
@@ -146,7 +158,6 @@ export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string)
         arrProveedor.push(nuevoProveedor)
     }
 
-
 console.log(arregloProveedores)
 //Funcion para modificar proveedor
 export function modificarProveedor(arregloProveedores: Array<Proveedor>, posicion: number){
@@ -170,7 +181,6 @@ export function borrarProveedor(proveedor: Array< Proveedor>, id: number){
 }
 console.log(proveedor)
 }
-
 // crearProveedor(arregloProveedores)
 // crearProveedor(arregloProveedores)
 // crearProveedor(arregloProveedores)
@@ -179,3 +189,76 @@ console.log(proveedor)
 // console.log(arregloProveedores)
 // borrarProveedor(arregloProveedores, 2)
 // console.log(arregloProveedores)
+
+// ------------------------------------------Funciones para Veterinarias---------------------------------------------------- 
+
+//Cargar Veterinarias
+
+export function cargarVeterinarias(elemento: string, arrVeterinaria: Array<Veterinaria>, arrClientes: Array<Cliente>, arrPacientes: Array <Paciente>): Array <Veterinaria>{
+	let datos = elemento.split(',');
+	let nombre : string = datos[0];
+	let direccion : string = datos[1];
+	let id: number = crearNumRandom(5);
+    
+    while(existeId(arrVeterinaria,id)==true){
+      id=crearNumRandom(5);
+    }
+	let listaClientes: Array<Cliente> = arrClientes;
+	let listaGeneralMascotas: Array<Paciente> = arrPacientes;
+
+let nuevaVeterinaria: Veterinaria = new Veterinaria (nombre, direccion, id, listaClientes, listaGeneralMascotas);
+arrVeterinaria.push(nuevaVeterinaria)
+return arrVeterinaria;
+}
+
+
+
+//Crear Veterinaria
+
+export function crearVeterinaria(arrVeterinaria: Array<Veterinaria>, arrClientes: Array<Cliente>, arrPacientes: Array <Paciente>){
+	let nombre : string = readlineSync.question("Ingrese el nombre de la veterinaria: ");
+	let direccion: string = readlineSync.question("ingrese dirección: ")
+	let id: number = crearNumRandom(5);
+    
+    while(existeId(arrVeterinaria,id)==true){
+      id=crearNumRandom(5);
+    }
+	
+	let listaClientes: Array<Cliente> = arrClientes;
+	let listaGeneralMascotas: Array<Paciente> = arrPacientes;
+
+let nuevaVeterinaria: Veterinaria = new Veterinaria(nombre, direccion, id, listaClientes, listaGeneralMascotas);
+arrVeterinaria.push(nuevaVeterinaria)
+	console.log(arrVeterinaria)
+
+}
+
+
+
+//Modificar veterinaria
+
+export function modificarVeterinaria(arrVeterinarias: Array<Veterinaria>, posicion: number, arrClientes: Array<Cliente>, arrPacientes: Array<Paciente>){
+	let nombre : string = readlineSync.question("Ingrese el nuevo nombre: ");
+	let direccion: string = readlineSync.question("ingrese nueva dirección: ")
+
+  	let id: number = arrVeterinarias[posicion].getId()    
+
+	let veterinariaModificada : Veterinaria = new Veterinaria (nombre, direccion, id, arrClientes, arrPacientes)
+	arrVeterinarias[posicion] = veterinariaModificada;
+	console.log(arrVeterinarias)
+
+}
+
+
+//Borrar Veterinaria 
+
+export function eliminarVeterinaria(arrVeterinarias: Array<Veterinaria>, id: number){
+
+  for (let i= 0; i< arrVeterinarias.length; i++){
+    if (id === arrVeterinarias[i].getId()){
+            arrVeterinarias.splice(i,1)
+    }
+}
+console.log(arrVeterinarias)
+}
+
