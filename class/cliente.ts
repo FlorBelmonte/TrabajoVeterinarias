@@ -19,7 +19,7 @@ export default class Cliente {
         return this.nombre
     }
     public getNumVisitas():number{
-        return this.numVisitas
+        return this.cantidadDeVisitas
     }
     public setNumVisitas(nuevasVisitas:number):void{
         this.cantidadDeVisitas=nuevasVisitas
@@ -39,8 +39,12 @@ export default class Cliente {
         return this.listaMascotas
     }
 
+
     public agregarListaMascota(nuevaMascota: Paciente): void {
+        
        this.listaMascotas.push(nuevaMascota)
     }
+
 }
+
 

@@ -1,28 +1,21 @@
 "use strict";
 exports.__esModule = true;
 var Cliente = /** @class */ (function () {
-    function Cliente(nombre, telefono, id, numVisitas, mascota) {
+    function Cliente(nombre, telefono, id) {
         this.nombre = nombre;
         this.telefono = telefono;
         this.id = id;
-
-        ths.cantidadDeVisitas = 0;
-        this.listaMascotas = [];i
-
-
+        this.cantidadDeVisitas = 0;
+        this.listaMascotas = [];
     }
     Cliente.prototype.getNombre = function () {
         return this.nombre;
     };
-
     Cliente.prototype.getNumVisitas = function () {
         return this.cantidadDeVisitas;
-
     };
     Cliente.prototype.setNumVisitas = function (nuevasVisitas) {
         this.cantidadDeVisitas = nuevasVisitas;
-
-
     };
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
         this.telefono = nuevoTelefono;
