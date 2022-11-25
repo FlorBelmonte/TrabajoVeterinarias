@@ -40,7 +40,7 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     }
     let numVisitas = 0;
     
-    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id, numVisitas);
+    let nuevoCliente: Cliente = new Cliente(nombre, telefono, id);
     
     arrCliente.push(nuevoCliente)
     return arrCliente;
@@ -56,13 +56,11 @@ export function crearCliente(arrCliente: Array<Cliente>){
     let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
     
     let id: number = crearNumRandom(5);
-    let numVisitas: number = 0;
     while(existeId(arrCliente,id)==true){
       id=crearNumRandom(5);
     }
     
-    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id, numVisitas); // acá nos falta agregar una variable de tipo Paciente
-    arrCliente.push(nuevoCliente)
+    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id); 
     console.log(arrCliente)
 }
 
