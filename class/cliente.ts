@@ -9,20 +9,22 @@ export default class Cliente {
     private listaMascotas: Array<Paciente>;
     
     public constructor(nombre:string, telefono: number,id:number){
-
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=id;
         this.cantidadDeVisitas=0
         this.listaMascotas= [];
-    }
 
+    }
+    
     public getNombre():string{
         return this.nombre
     }
-
-    public getNumVisitas():number{
+    public getCantidadDeVisitas():number{
         return this.cantidadDeVisitas
+    }
+    public setCantidadDeVisitas(nuevasVisitas:number):void{
+        this.cantidadDeVisitas=nuevasVisitas
     }
     public setTelefono(nuevoTelefono:number):void{
         this.telefono=nuevoTelefono
@@ -40,10 +42,10 @@ export default class Cliente {
     }
 
 
-    // public agregarListaMascota(nuevaMascota: Paciente): void {
+    public agregarListaMascota(nuevaMascota: Paciente): void {
         
-    //    this.listaMascotas.push(nuevaMascota)
-    // }
+       this.listaMascotas.push(nuevaMascota)
+    }
 
 }
 
