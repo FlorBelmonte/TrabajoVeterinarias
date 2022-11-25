@@ -70,6 +70,19 @@ export function crearCliente(arrCliente: Array<Cliente>){
     console.log(arrCliente)
 }
 
+//Funcion para borrar un cliente
+
+export function borrarCliente(arrClientes:Array <Cliente>):void{
+  let deleteId:number=readlineSync.questionInt("Ingrese el id del cliente a eliminar: ");
+  let ubicacion:number=buscarPorId(arrClientes,deleteId);
+  if(ubicacion!= -1){
+    arrClientes.slice(ubicacion,1)
+  }else{
+    console.log("No se encontro id ingresado")
+  }
+
+}
+
 //-----------Funcion para cliente VIP--------
 
 export function contadorVIP(customer: Cliente){ 
@@ -96,18 +109,15 @@ export function crearPaciente(arrPacientes:Array <Paciente>,arrCliente:Array <Cl
   // if (existeId(arrCliente,idDeCliente)==false){
   //   let idDeCliente=readlineSync.questionInt("Id ingresado no existe, ingrese nuevmente un numero: ");
   // }
-  
-  let ubicacionId:number=buscarPorId(arrCliente,idDeCliente);
-
   let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
   arrPacientes.push(nuevoPaciente);
-  arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
-
+  let ubicacionId:number=buscarPorId(arrCliente,idDeCliente);
+  if(ubicacionId!= -1){
+    arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
+  }else{
+    console.log("No se encontro Id ingresado")
+  }
   return nuevoPaciente
-  
-  // agregarListaMascota(nuevoPaciente) ;
-  //arregloCliente.agregarListaMascota(nuevoPaciente)//Aca tengo que agregar el paciente a la lista de mascotas del Cliente
-
 }
 
   //Funcion buscar por id a un cliente
@@ -125,9 +135,9 @@ export function crearPaciente(arrPacientes:Array <Paciente>,arrCliente:Array <Cl
       }
     }
     return ubicacion
-  }
+  } 
 
-//------------------FUNCIONES PARA PROVEEDORES-----------
+//------------------FUNCIONES PARA PROVEEDORES-----------------
 
 //Funcion para cargar proveedor 
 let arregloProveedores: Proveedor[] = []
