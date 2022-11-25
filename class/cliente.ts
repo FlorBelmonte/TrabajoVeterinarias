@@ -5,16 +5,16 @@ export default class Cliente {
     private nombre:string;
     private telefono:number;
     private id:number;
-    private numVisitas:number;
-
-    private mascota: Paciente;
-    public constructor(nombre:string, telefono: number,id:number,numVisitas:number, mascota: Paciente){
+    private cantidadDeVisitas:number;
+    private listaMascotas: Array<Paciente>;
+    
+    public constructor(nombre:string, telefono: number,id:number){
 
         this.nombre=nombre;
         this.telefono=telefono;
         this.id=id;
-        this.numVisitas=numVisitas
-        this.mascota= mascota;
+        this.cantidadDeVisitas=0
+        this.listaMascotas= [];
     }
 
     public getNombre():string{
@@ -22,7 +22,7 @@ export default class Cliente {
     }
 
     public getNumVisitas():number{
-        return this.numVisitas
+        return this.cantidadDeVisitas
     }
     public setTelefono(nuevoTelefono:number):void{
         this.telefono=nuevoTelefono
