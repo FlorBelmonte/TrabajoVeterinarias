@@ -11,10 +11,10 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.getNombre = function () {
         return this.nombre;
     };
-    Cliente.prototype.getNumVisitas = function () {
+    Cliente.prototype.getCantidadDeVisitas = function () {
         return this.cantidadDeVisitas;
     };
-    Cliente.prototype.setNumVisitas = function (nuevasVisitas) {
+    Cliente.prototype.setCantidadDeVisitas = function (nuevasVisitas) {
         this.cantidadDeVisitas = nuevasVisitas;
     };
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
