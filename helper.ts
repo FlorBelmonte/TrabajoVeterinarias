@@ -76,7 +76,7 @@ export function borrarCliente(arrClientes:Array <Cliente>):void{
   let deleteId:number=readlineSync.questionInt("Ingrese el id del cliente a eliminar: ");
   let ubicacion:number=buscarPorId(arrClientes,deleteId);
   if(ubicacion!= -1){
-    arrClientes.slice(ubicacion,1)
+    arrClientes.splice(ubicacion,1)
   }else{
     console.log("No se encontro id ingresado")
   }
@@ -183,10 +183,13 @@ export function modificarProveedor(arregloProveedores: Array<Proveedor>, posicio
 
 //Funcion para borrar Proveedor 
 
-export function borrarProveedor(proveedor: Array< Proveedor>, id: number){ 
+export function borrarProveedor(proveedor: Array< Proveedor>){ 
+  let deleteId:number=readlineSync.questionInt("Ingrese Id a Eliminar: ")
   for (let i= 0; i< proveedor.length; i++){
-    if (id === proveedor[i].getId()){
+    if (deleteId === proveedor[i].getId()){
             proveedor.splice(i,1)
+    }else{
+      console.log("No se encontro Id ingresado")
     }
 }
 console.log(proveedor)
