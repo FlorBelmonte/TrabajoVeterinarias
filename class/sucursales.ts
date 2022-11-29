@@ -14,7 +14,7 @@ export default class Sucursales{
         return this.veterinarias;
     }
     
-    public setVeterinarias(nuevoNombre: Veterinaria ) : void {
+    public setVeterinarias(arreglo: Array <Veterinaria> ) : void {
         this.veterinarias = nuevoNombre;
     }
     
