@@ -20,9 +20,14 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
         this.telefono = nuevoTelefono;
     };
-    Cliente.prototype.esClienteVip = function () {
-        if (this.cantidadDeVisitas >= 5) {
-            console.log("El cliente es Vip");
+    Cliente.prototype.contadorVIP = function (customer) {
+        var visitas = customer.getCantidadDeVisitas();
+        if (visitas < 5) {
+            customer.setCantidadDeVisitas(visitas++);
+            console.log("El cliente aun no es VIP");
+        }
+        else {
+            console.log("es cliente VIP");
         }
     };
     Cliente.prototype.getId = function () {
@@ -37,3 +42,11 @@ var Cliente = /** @class */ (function () {
     return Cliente;
 }());
 exports["default"] = Cliente;
+var cliente1 = new Cliente("pedro", 2323233, 4);
+cliente1.contadorVIP(cliente1);
+cliente1.contadorVIP(cliente1);
+cliente1.contadorVIP(cliente1);
+cliente1.contadorVIP(cliente1);
+cliente1.contadorVIP(cliente1);
+cliente1.contadorVIP(cliente1);
+console.log(cliente1);

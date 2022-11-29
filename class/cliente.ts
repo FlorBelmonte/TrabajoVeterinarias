@@ -29,11 +29,19 @@ export default class Cliente {
     public setTelefono(nuevoTelefono:number):void{
         this.telefono=nuevoTelefono
     }
-    public esClienteVip(): void{
-        if (this.cantidadDeVisitas>=5){
-            console.log("El cliente es Vip")
-        }
-    }
+
+    public contadorVIP(customer: Cliente){ 
+        let visitas: number = customer.getCantidadDeVisitas();
+            if (visitas < 5){
+                customer.setCantidadDeVisitas (visitas++)
+                console.log ("El cliente aun no es VIP")
+                
+          }
+          else {
+            console.log ("es cliente VIP")
+          }
+          
+      }
     public getId(): number{
         return this.id
     }
@@ -48,5 +56,11 @@ export default class Cliente {
     }
 
 }
-
-
+let cliente1 : Cliente = new Cliente("pedro", 2323233, 4)
+cliente1.contadorVIP(cliente1)
+cliente1.contadorVIP(cliente1)
+cliente1.contadorVIP(cliente1)
+cliente1.contadorVIP(cliente1)
+cliente1.contadorVIP(cliente1)
+cliente1.contadorVIP(cliente1)
+console.log(cliente1)
