@@ -33,10 +33,10 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     let datos = elemento.split(',');
     let nombre: string = datos[0];
     let telefono: number = Number(datos[1]);
-    let id: number = crearNumRandom(5);
+    let id: number = crearNumRandom(10);
     
     while(existeId(arrCliente,id)==true){
-      id=crearNumRandom(5);
+      id=crearNumRandom(10);
     }
     
 
@@ -55,10 +55,10 @@ export function crearCliente(arrCliente: Array<Cliente>){
     let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
     let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
     
-    let id: number = crearNumRandom(5);
+    let id: number = crearNumRandom(10);
 
     while(existeId(arrCliente,id)==true){
-      id=crearNumRandom(5);
+      id=crearNumRandom(10);
     }
     
 
@@ -82,25 +82,30 @@ export function borrarCliente(arrClientes:Array <Cliente>):void{
   }
 
 }
-
-//-----------Funcion para cliente VIP--------
-
-export function contadorVIP(customer: Cliente){ 
-  let visitas: number = customer.getCantidadDeVisitas();
-      if (visitas < 5){
-          customer.setCantidadDeVisitas (visitas++)
-          console.log ("El cliente aun no es VIP")
-          
-    }
-    else {
-      console.log ("es cliente VIP")
-    }
-    
-}
-
 //------------------FUNCION PARA PACIENTE-----------------
 
-//Fubcion para crear nuevo paciente
+//Funcion para cargar paciente
+
+export function cargarPaciente(arrPacientes:Array <Paciente>, paciente: string , arrCliente: Array <Cliente>) : Array<Paciente>{
+  let datos: string[] = paciente.split(',');
+  let nombre: string = datos[0];
+  let especie: string = datos[1];
+  let idDeCliente=readlineSync.questionInt("Ingrese id del Cliente: ");
+  let ubicacionId:number=buscarPorId(arrCliente,idDeCliente);
+  if(ubicacionId!= -1){
+    let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
+
+    arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
+    arrPacientes.push(nuevoPaciente);
+  }else{
+    console.log("No se encontro Id ingresado")
+  }
+
+  return arrPacientes
+}
+
+
+//Funcion para crear nuevo paciente
 export function crearPaciente(arrPacientes:Array <Paciente>,arrCliente:Array <Cliente>){
   let nombre:string=readlineSync.question("Ingrese el nombre del paciente: ");
   let especie:string=readlineSync.question("Ingrese la especie del Paciente: ");
@@ -146,10 +151,10 @@ export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string)
     let datos = elemento.split(',');
     let nombre: string = datos[0];
     let telefono: number = Number(datos[1]);
-    let id: number = crearNumRandom(5);
+    let id: number = crearNumRandom(10);
 
     while(existeId(arrProveedor,id)==true){
-      id=crearNumRandom(5);
+      id=crearNumRandom(10);
     }
     let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id);
     
@@ -160,9 +165,9 @@ export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string)
         let nombre: string = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
         let telefono: number = readlineSync.questionInt("Ingrese el telefono del proveedor: ");
     
-        let id: number = crearNumRandom(5);
+        let id: number = crearNumRandom(10);
         while(existeId(arrProveedor,id)==true){
-          id=crearNumRandom(5);
+          id=crearNumRandom(10);
         }
         let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id)
         arrProveedor.push(nuevoProveedor)
@@ -211,10 +216,10 @@ export function cargarVeterinarias(elemento: string, arrVeterinaria: Array<Veter
 	let datos = elemento.split(',');
 	let nombre : string = datos[0];
 	let direccion : string = datos[1];
-	let id: number = crearNumRandom(5);
+	let id: number = crearNumRandom(10);
     
     while(existeId(arrVeterinaria,id)==true){
-      id=crearNumRandom(5);
+      id=crearNumRandom(10);
     }
 	let listaClientes: Array<Cliente> = arrClientes;
 	let listaGeneralMascotas: Array<Paciente> = arrPacientes;
@@ -231,10 +236,10 @@ return arrVeterinaria;
 export function crearVeterinaria(arrVeterinaria: Array<Veterinaria>, arrClientes: Array<Cliente>, arrPacientes: Array <Paciente>){
 	let nombre : string = readlineSync.question("Ingrese el nombre de la veterinaria: ");
 	let direccion: string = readlineSync.question("ingrese dirección: ")
-	let id: number = crearNumRandom(5);
+	let id: number = crearNumRandom(10);
     
     while(existeId(arrVeterinaria,id)==true){
-      id=crearNumRandom(5);
+      id=crearNumRandom(10);
     }
 	
 	let listaClientes: Array<Cliente> = arrClientes;
