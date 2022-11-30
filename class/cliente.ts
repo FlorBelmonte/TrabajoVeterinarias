@@ -20,15 +20,22 @@ export default class Cliente {
     public getNombre():string{
         return this.nombre
     }
+    public setNombre(nuevoNombre:string):void{
+        this.nombre=nuevoNombre
+    }
+    public getTelefono():number{
+        return this.telefono
+    }
+    public setTelefono(nuevoTelefono:number):void{
+        this.telefono=nuevoTelefono
+    }
     public getCantidadDeVisitas():number{
         return this.cantidadDeVisitas
     }
     public setCantidadDeVisitas(nuevasVisitas:number):void{
         this.cantidadDeVisitas=nuevasVisitas
     }
-    public setTelefono(nuevoTelefono:number):void{
-        this.telefono=nuevoTelefono
-    }
+    
     public esClienteVip(): void{
         if (this.cantidadDeVisitas>=5){
             console.log("El cliente es Vip")
@@ -40,13 +47,11 @@ export default class Cliente {
     public getListaMascotas(){
         return this.listaMascotas
     }
-
-
-    public agregarListaMascota(nuevaMascota: Paciente): void {
+    // public agregarListaMascota(nuevaMascota: Paciente): void {
         
-       this.listaMascotas.push(nuevaMascota)
-    }
+    //    this.listaMascotas.push(nuevaMascota)
+    // }
 
-}
+}  
 
 

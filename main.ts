@@ -1,5 +1,5 @@
 import * as readlineSync from 'readline-sync';
-import { cargarCliente, crearCliente, crearNumRandom, existeId, cargarProveedor, crearProveedor, modificarProveedor, borrarProveedor, crearPaciente, cargarVeterinarias, crearVeterinaria, modificarVeterinaria, eliminarVeterinaria, borrarCliente } from './helper';
+import { cargarCliente, crearCliente, crearNumRandom, existeId, cargarProveedor, crearProveedor, modificarProveedor, borrarProveedor, crearPaciente, cargarVeterinarias, crearVeterinaria, modificarVeterinaria, eliminarVeterinaria, borrarCliente, modificarNombreCliente, modificarTelefonoCliente } from './helper';
 import Cliente from './class/cliente';
 import Paciente from './class/paciente';
 import Proveedor from './class/proveedores';
@@ -51,6 +51,13 @@ console.log(JSON.stringify(listaClientes))
 
 borrarCliente(listaClientes);
 console.log(listaClientes)
+modificarNombreCliente(listaClientes)
+console.log(listaClientes)
+modificarTelefonoCliente(listaClientes)
+console.log(listaClientes)
+
+
+
 
 
 
