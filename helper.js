@@ -1,6 +1,8 @@
 "use strict";
 exports.__esModule = true;
+
 exports.eliminarVeterinaria = exports.modificarVeterinaria = exports.crearVeterinaria = exports.cargarVeterinarias = exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.buscarPorId = exports.crearPaciente = exports.cargarPaciente = exports.borrarCliente = exports.crearCliente = exports.listaMascotas = exports.listaClientes = exports.cargarCliente = exports.existeId = exports.crearNumRandom = void 0;
+
 var cliente_1 = require("./class/cliente");
 var paciente_1 = require("./class/paciente");
 var proveedores_1 = require("./class/proveedores");
@@ -59,39 +61,65 @@ function borrarCliente(arrClientes) {
     var ubicacion = buscarPorId(arrClientes, deleteId);
     if (ubicacion != -1) {
         arrClientes.splice(ubicacion, 1);
+        console.log("Se elimino cliente correctamente");
     }
     else {
         console.log("No se encontro id ingresado");
     }
 }
 exports.borrarCliente = borrarCliente;
-//------------------FUNCION PARA PACIENTE-----------------
-//Funcion para cargar paciente
-function cargarPaciente(arrPacientes, paciente, arrCliente) {
-    var datos = paciente.split(',');
-    var nombre = datos[0];
-    var especie = datos[1];
-    var idDeCliente = readlineSync.questionInt("Ingrese id del Cliente: ");
-    var ubicacionId = buscarPorId(arrCliente, idDeCliente);
+
+//Funciones para modificar datos de cliente
+function modificarNombreCliente(arrCliente) {
+    var idCliente = readlineSync.questionInt("Ingrese id del cliente a modificar: ");
+    var ubicacionId = buscarPorId(arrCliente, idCliente);
     if (ubicacionId != -1) {
-        var nuevoPaciente = new paciente_1["default"](nombre, especie, idDeCliente);
-        arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
-        arrPacientes.push(nuevoPaciente);
+        var nuevoNombre = readlineSync.question("Ingrese el nuevo nombre: ");
+        arrCliente[ubicacionId].setNombre(nuevoNombre);
+        console.log("Se modifico exitosamente el nombre:  " + arrCliente[ubicacionId].getNombre());
+    }
+    else {
+        console.log("No se encontro id ingresado");
+    }
+}
+exports.modificarNombreCliente = modificarNombreCliente;
+function modificarTelefonoCliente(arrCliente) {
+    var idCliente = readlineSync.questionInt("Ingrese Id del cliente a modificar: ");
+    var ubicacionId = buscarPorId(arrCliente, idCliente);
+    if (ubicacionId != -1) {
+        var nuevoTelefono = readlineSync.questionInt("Ingrese nuevo numero telefonico: ");
+        arrCliente[ubicacionId].setTelefono(nuevoTelefono);
+        console.log("Se modifico exitosamente el numero telefonico: " + arrCliente[ubicacionId].getTelefono());
+    }
+    else {
+        console.log("No se encontro id ingresado");
+    }
+}
+exports.modificarTelefonoCliente = modificarTelefonoCliente;
+//-----------Funcion para cliente VIP--------
+function contadorVIP(customer) {
+    var visitas = customer.getCantidadDeVisitas();
+    if (visitas < 5) {
+        customer.setCantidadDeVisitas(visitas++);
+        console.log("El cliente aun no es VIP");
+
     }
     else {
         console.log("No se encontro Id ingresado");
     }
     return arrPacientes;
 }
+
+exports.contadorVIP = contadorVIP;
+//------------------FUNCION PARA PACIENTE-----------------
+
+
 exports.cargarPaciente = cargarPaciente;
 //Funcion para crear nuevo paciente
 function crearPaciente(arrPacientes, arrCliente) {
     var nombre = readlineSync.question("Ingrese el nombre del paciente: ");
     var especie = readlineSync.question("Ingrese la especie del Paciente: ");
     var idDeCliente = readlineSync.questionInt("Ingrese id del Cliente: ");
-    // if (existeId(arrCliente,idDeCliente)==false){
-    //   let idDeCliente=readlineSync.questionInt("Id ingresado no existe, ingrese nuevmente un numero: ");
-    // }
     var nuevoPaciente = new paciente_1["default"](nombre, especie, idDeCliente);
     arrPacientes.push(nuevoPaciente);
     var ubicacionId = buscarPorId(arrCliente, idDeCliente);
@@ -166,9 +194,7 @@ function borrarProveedor(proveedor) {
     for (var i = 0; i < proveedor.length; i++) {
         if (deleteId === proveedor[i].getId()) {
             proveedor.splice(i, 1);
-        }
-        else {
-            console.log("No se encontro Id ingresado");
+            console.log("Se elimino Proveedor con id ingresado");
         }
     }
     console.log(proveedor);

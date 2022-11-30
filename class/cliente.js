@@ -11,12 +11,23 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.getNombre = function () {
         return this.nombre;
     };
+    Cliente.prototype.setNombre = function (nuevoNombre) {
+        this.nombre = nuevoNombre;
+    };
+    Cliente.prototype.getTelefono = function () {
+        return this.telefono;
+    };
+    Cliente.prototype.setTelefono = function (nuevoTelefono) {
+        this.telefono = nuevoTelefono;
+    };
     Cliente.prototype.getCantidadDeVisitas = function () {
         return this.cantidadDeVisitas;
     };
     Cliente.prototype.setCantidadDeVisitas = function (nuevasVisitas) {
         this.cantidadDeVisitas = nuevasVisitas;
     };
+
+    
     Cliente.prototype.setTelefono = function (nuevoTelefono) {
         this.telefono = nuevoTelefono;
     };
@@ -28,6 +39,7 @@ var Cliente = /** @class */ (function () {
         }
         else {
             console.log("es cliente VIP");
+
         }
     };
     Cliente.prototype.getId = function () {
@@ -35,9 +47,6 @@ var Cliente = /** @class */ (function () {
     };
     Cliente.prototype.getListaMascotas = function () {
         return this.listaMascotas;
-    };
-    Cliente.prototype.agregarListaMascota = function (nuevaMascota) {
-        this.listaMascotas.push(nuevaMascota);
     };
     return Cliente;
 }());
