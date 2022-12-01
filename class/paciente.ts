@@ -19,8 +19,3 @@ export default class Paciente{
         }
     }
 }
-//Cree instacias para ver si se ejecutaba bien el método esExotica()
-let pacientePrueba1: Paciente = new Paciente("Juancito", "gato", 34455)
-let pacientePrueba2: Paciente = new Paciente ("Pepito", "loro", 2425)
-pacientePrueba1.esExotica()
-pacientePrueba2.esExotica()

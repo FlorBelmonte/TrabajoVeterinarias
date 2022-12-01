@@ -1,5 +1,7 @@
 import * as readlineSync from 'readline-sync';
-import { cargarCliente, crearCliente, crearNumRandom, existeId, cargarProveedor, crearProveedor, modificarProveedor, borrarProveedor, crearPaciente, cargarVeterinarias, crearVeterinaria, modificarVeterinaria, eliminarVeterinaria, borrarCliente } from './helper';
+
+import { cargarCliente, crearCliente, crearNumRandom, existeId, cargarProveedor, crearProveedor, modificarProveedor, borrarProveedor, cargarPaciente, crearPaciente, cargarVeterinarias, crearVeterinaria, modificarVeterinaria, eliminarVeterinaria, borrarCliente } from './helper';
+
 import Cliente from './class/cliente';
 import Paciente from './class/paciente';
 import Proveedor from './class/proveedores';
@@ -24,33 +26,38 @@ let listaClientes: Cliente[] = [];
 let datosClientes: GestorDeArchivos = new GestorDeArchivos('./txt/clientes.txt');
 
 for(let i : number = 0; i < datosClientes.getArregloString().length; i++){
-    cargarCliente(listaClientes, datosProveedores.getArregloString()[i]);
+    cargarCliente(listaClientes, datosClientes.getArregloString()[i]);
 }
 
 let listaGeneralMascotas: Paciente []=[];
-// crearCliente(listaClientes)
-// crearCliente(listaClientes)
+crearCliente(listaClientes)
+crearCliente(listaClientes)
 
  console.log(listaClientes)
 
 //Funcion para cargar Paciente desde el Gestor de Archivos
 
-export function cargarPaciente(arrPacientes:Array <Paciente>,paciente:string){
-    let datosDelGestor:string []=paciente.split(",");
-  }
-  
+let datosMascotas: GestorDeArchivos = new GestorDeArchivos('./txt/pacientes.txt')
+for(let i : number = 0; i < datosMascotas.getArregloString().length; i++){
+  cargarPaciente(listaGeneralMascotas, datosMascotas.getArregloString()[i], listaClientes);
+}
+// crearPaciente(listaGeneralMascotas, listaClientes)
 console.log(listaGeneralMascotas)
 
-crearPaciente(listaGeneralMascotas,listaClientes)
-crearPaciente(listaGeneralMascotas,listaClientes)
 
 console.log(listaClientes)
 
-console.log(listaGeneralMascotas)
-console.log(JSON.stringify(listaClientes))
+// console.log(listaGeneralMascotas)
+// console.log(JSON.stringify(listaClientes))
+
 
 borrarCliente(listaClientes);
 console.log(listaClientes)
+modificarNombreCliente(listaClientes)
+console.log(listaClientes)
+modificarTelefonoCliente(listaClientes)
+console.log(listaClientes)
+
 
 
 

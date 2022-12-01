@@ -2,27 +2,30 @@ import Veterinaria from './veterinaria';
 import Proveedor from './proveedores';
 
 export default class Sucursales{
-    private veterinarias: Veterinaria;
-    private proveedores: Proveedor;
 
-    public constructor(veterinarias: Veterinaria, proveedores: Proveedor){
+    private veterinarias: Array< Veterinaria>;
+    private proveedores: Array< Proveedor>;
+
+    public constructor(veterinarias: Array< Veterinaria>, proveedores: Array< Proveedor>){
+
         this.veterinarias = veterinarias;
         this.proveedores = proveedores;
     }
 
-    public getVeterinarias() : Veterinaria {
+    public getVeterinarias() : Array<Veterinaria> {
         return this.veterinarias;
     }
-    
-    public setVeterinarias(arreglo: Array <Veterinaria> ) : void {
-        this.veterinarias = nuevoNombre;
+    public setVeterinarias(arreglo: Array< Veterinaria>) : void {
+        this.veterinarias = arreglo;
+
     }
     
-    public getProveedores() : Proveedor {
+    public getProveedores() : Array<Proveedor >{
         return this.proveedores;
     }
     
-    public setProveedores(nuevoNombre: Proveedor ) : void {
-        this.proveedores = nuevoNombre;
+    public setProveedores(arreglo: Array< Proveedor >) {
+        this.proveedores = arreglo;
     }
+
 }
