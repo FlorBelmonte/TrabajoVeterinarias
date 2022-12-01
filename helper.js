@@ -1,8 +1,6 @@
 "use strict";
 exports.__esModule = true;
-
-exports.eliminarVeterinaria = exports.modificarVeterinaria = exports.crearVeterinaria = exports.cargarVeterinarias = exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.buscarPorId = exports.crearPaciente = exports.cargarPaciente = exports.borrarCliente = exports.crearCliente = exports.listaMascotas = exports.listaClientes = exports.cargarCliente = exports.existeId = exports.crearNumRandom = void 0;
-
+exports.eliminarVeterinaria = exports.modificarVeterinaria = exports.crearVeterinaria = exports.cargarVeterinarias = exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.eliminarPaciente = exports.crearPaciente = exports.cargarPaciente = exports.modificarTelefonoCliente = exports.modificarNombreCliente = exports.borrarCliente = exports.crearCliente = exports.listaMascotas = exports.listaClientes = exports.cargarCliente = exports.buscarPorId = exports.existeId = exports.crearNumRandom = void 0;
 var cliente_1 = require("./class/cliente");
 var paciente_1 = require("./class/paciente");
 var proveedores_1 = require("./class/proveedores");
@@ -26,6 +24,23 @@ function existeId(arreglo, id) {
     return existe;
 }
 exports.existeId = existeId;
+//Funcion buscar por id a un cliente
+function buscarPorId(arreglo, id) {
+    var ubicacion = -1;
+    var ok = false;
+    var i = 0;
+    while ((ok == false) && (i < arreglo.length)) {
+        if (id == arreglo[i].getId()) {
+            ubicacion = i;
+            ok = true;
+        }
+        else {
+            i = i + 1;
+        }
+    }
+    return ubicacion;
+}
+exports.buscarPorId = buscarPorId;
 //-------Funcion para cargar clientes desdes el Gestor de archivos-----
 function cargarCliente(arrCliente, elemento) {
     var datos = elemento.split(',');
@@ -68,10 +83,9 @@ function borrarCliente(arrClientes) {
     }
 }
 exports.borrarCliente = borrarCliente;
-
 //Funciones para modificar datos de cliente
 function modificarNombreCliente(arrCliente) {
-    var idCliente = readlineSync.questionInt("Ingrese id del cliente a modificar: ");
+    var idCliente = readlineSync.questionInt("Ingrese id del cliente a modificar el nombre: ");
     var ubicacionId = buscarPorId(arrCliente, idCliente);
     if (ubicacionId != -1) {
         var nuevoNombre = readlineSync.question("Ingrese el nuevo nombre: ");
@@ -84,7 +98,7 @@ function modificarNombreCliente(arrCliente) {
 }
 exports.modificarNombreCliente = modificarNombreCliente;
 function modificarTelefonoCliente(arrCliente) {
-    var idCliente = readlineSync.questionInt("Ingrese Id del cliente a modificar: ");
+    var idCliente = readlineSync.questionInt("Ingrese Id del cliente a modificar el numero telefonico: ");
     var ubicacionId = buscarPorId(arrCliente, idCliente);
     if (ubicacionId != -1) {
         var nuevoTelefono = readlineSync.questionInt("Ingrese nuevo numero telefonico: ");
@@ -96,59 +110,92 @@ function modificarTelefonoCliente(arrCliente) {
     }
 }
 exports.modificarTelefonoCliente = modificarTelefonoCliente;
-//-----------Funcion para cliente VIP--------
-function contadorVIP(customer) {
-    var visitas = customer.getCantidadDeVisitas();
-    if (visitas < 5) {
-        customer.setCantidadDeVisitas(visitas++);
-        console.log("El cliente aun no es VIP");
-
+//---------------------------FUNCION PARA PACIENTE-----------------------
+//Funcion para cargar paciente
+function cargarPaciente(arrPacientes, paciente, arrCliente) {
+    var datos = paciente.split(',');
+    var nombre = datos[0];
+    var especie = datos[1];
+    var idDeCliente = readlineSync.questionInt("Ingrese id del Cliente: ");
+    var ubicacionId = buscarPorId(arrCliente, idDeCliente);
+    if (ubicacionId != -1) {
+        var nuevoPaciente = new paciente_1["default"](nombre, especie, idDeCliente);
+        arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
+        arrPacientes.push(nuevoPaciente);
     }
     else {
         console.log("No se encontro Id ingresado");
     }
     return arrPacientes;
 }
-
-exports.contadorVIP = contadorVIP;
-//------------------FUNCION PARA PACIENTE-----------------
-
-
 exports.cargarPaciente = cargarPaciente;
 //Funcion para crear nuevo paciente
-function crearPaciente(arrPacientes, arrCliente) {
+function crearPaciente(arrCliente, arrPacientes) {
     var nombre = readlineSync.question("Ingrese el nombre del paciente: ");
     var especie = readlineSync.question("Ingrese la especie del Paciente: ");
     var idDeCliente = readlineSync.questionInt("Ingrese id del Cliente: ");
-    var nuevoPaciente = new paciente_1["default"](nombre, especie, idDeCliente);
-    arrPacientes.push(nuevoPaciente);
     var ubicacionId = buscarPorId(arrCliente, idDeCliente);
     if (ubicacionId != -1) {
+        var nuevoPaciente = new paciente_1["default"](nombre, especie, idDeCliente);
+        arrPacientes.push(nuevoPaciente);
         arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
     }
     else {
         console.log("No se encontro Id ingresado");
     }
-    return nuevoPaciente;
+    return arrPacientes;
 }
 exports.crearPaciente = crearPaciente;
-//Funcion buscar por id a un cliente
-function buscarPorId(arreglo, id) {
-    var ubicacion = -1;
-    var ok = false;
-    var i = 0;
-    while ((ok == false) && (i < arreglo.length)) {
-        if (id == arreglo[i].getId()) {
-            ubicacion = i;
-            ok = true;
+//Funcion para listar pacientes
+// export function listarPaciente (arrCliente:Array <Cliente>){
+//   let listaMascotas=[];
+//   for(let i:number=0;i<arrCliente.length;i++){
+//     let paciente=arrCliente[i].getListaMascotas();
+//     listaMascotas.push(paciente)
+//   }
+//   return listaMascotas
+// }
+//Funcion eliminar paciente
+function eliminarPaciente(arrCliente, arrPacientes) {
+    var idCliente = readlineSync.questionInt("Ingrese Id del Cliente, para eliminar paciente: ");
+    var ubicacionId = buscarPorId(arrCliente, idCliente);
+    if (ubicacionId != -1) {
+        console.log("Lista de pacientes " + JSON.stringify(arrCliente[ubicacionId].getListaMascotas()));
+        var deletPaciente = readlineSync.question("Ingrese el nombre del paciente a eliminar: ");
+        var eliminar = false;
+        var i = 0;
+        while ((eliminar == false) && (i < arrCliente[ubicacionId].getListaMascotas().length)) {
+            if (deletPaciente == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()) {
+                eliminar = true;
+                arrCliente[ubicacionId].getListaMascotas().splice(i, 1);
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        var eliminarEnListaGeneral = false;
+        i = 0;
+        while ((eliminarEnListaGeneral == false) && (i < arrPacientes.length)) {
+            if ((idCliente == arrPacientes[i].getIdDelCliente()) && (deletPaciente == arrPacientes[i].getNombre())) {
+                eliminarEnListaGeneral = true;
+                arrPacientes.splice(i, 1);
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        if (eliminar == true && eliminarEnListaGeneral == true) {
+            console.log("Se elimino exitosamente, el paciente ingresado");
         }
         else {
-            i = i + 1;
+            console.log("No se encontro el nombre del Paciente ingresado");
         }
     }
-    return ubicacion;
+    else {
+        console.log("El Id del cliente Ingresado no se encontro");
+    }
 }
-exports.buscarPorId = buscarPorId;
+exports.eliminarPaciente = eliminarPaciente;
 //------------------FUNCIONES PARA PROVEEDORES-----------------
 //Funcion para cargar proveedor 
 var arregloProveedores = [];

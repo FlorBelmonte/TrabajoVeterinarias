@@ -9,8 +9,11 @@ export default class Paciente{
         this.idDeCliente = idDeCliente;
     }
 
-    public getNombre(){
+    public getNombre():string{
         return this.nombre
+    }
+    public getIdDelCliente():number{
+        return this.idDeCliente
     }
 
     public esExotica():void{
