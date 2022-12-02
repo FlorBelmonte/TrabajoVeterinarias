@@ -1,6 +1,6 @@
 import * as readlineSync from 'readline-sync';
 
-import { cargarCliente, crearCliente, crearNumRandom, existeId, cargarProveedor, crearProveedor, modificarProveedor, borrarProveedor, cargarPaciente, crearPaciente, cargarVeterinarias, crearVeterinaria, modificarVeterinaria, eliminarVeterinaria, borrarCliente, modificarNombreCliente, modificarTelefonoCliente } from './helper';
+import { cargarCliente, crearCliente, crearNumRandom, existeId, cargarProveedor, crearProveedor, modificarProveedor, borrarProveedor, cargarPaciente, crearPaciente, cargarVeterinarias, crearVeterinaria, modificarVeterinaria, eliminarVeterinaria, borrarCliente, eliminarPaciente } from './helper';
 
 import Cliente from './class/cliente';
 import Paciente from './class/paciente';
@@ -36,27 +36,29 @@ crearCliente(listaClientes)
  console.log(listaClientes)
 
 //Funcion para cargar Paciente desde el Gestor de Archivos
+console.log("Gestor de archivo de Pacientes")
 
 let datosMascotas: GestorDeArchivos = new GestorDeArchivos('./txt/pacientes.txt')
 for(let i : number = 0; i < datosMascotas.getArregloString().length; i++){
   cargarPaciente(listaGeneralMascotas, datosMascotas.getArregloString()[i], listaClientes);
 }
 // crearPaciente(listaGeneralMascotas, listaClientes)
-console.log(listaGeneralMascotas)
-
-
 console.log(listaClientes)
+
+
 
 // console.log(listaGeneralMascotas)
 // console.log(JSON.stringify(listaClientes))
 
 
-borrarCliente(listaClientes);
+// borrarCliente(listaClientes);
+// console.log(listaClientes)
+// modificarNombreCliente(listaClientes)
+// console.log(listaClientes)
+// modificarTelefonoCliente(listaClientes)
 console.log(listaClientes)
-modificarNombreCliente(listaClientes)
-console.log(listaClientes)
-modificarTelefonoCliente(listaClientes)
-console.log(listaClientes)
+console.log(JSON.stringify(listaClientes))
+eliminarPaciente(listaClientes,listaGeneralMascotas)
 
 
 

@@ -1,7 +1,7 @@
 export default class Paciente{
     private nombre: string;
     private especie: string;
-    private idDeCliente: number; //Debe coincidir con el id del cliente
+    private idDeCliente: number; 
 
     public constructor(nombre: string, especie: string, idDeCliente: number){
         this.nombre = nombre;
@@ -9,13 +9,21 @@ export default class Paciente{
         this.idDeCliente = idDeCliente;
     }
 
-    public getNombre(){
+    public getNombre():string{
         return this.nombre
     }
+    public getIdDelCliente():number{
+        return this.idDeCliente
+    }
 
-    public esExotica():void{
+    public esExotica():boolean{
+        let ok:boolean = false;
         if (this.especie != "perro" && this.especie != "gato"){
-            console.log("el paciente es especie exotica")
+            ok = true;
+            console.log("el paciente " + this.nombre + " es especie exotica")
+        }else {
+            console.log("el paciente " + this.nombre + " no es especie exotica")
         }
+        return ok
     }
 }
