@@ -165,17 +165,6 @@ export function crearPaciente(arrCliente:Array <Cliente>, arrPacientes:Array <Pa
   return arrPacientes
 }
 
-//Funcion para listar pacientes
-
-// export function listarPaciente (arrCliente:Array <Cliente>){
-//   let listaMascotas=[];
-//   for(let i:number=0;i<arrCliente.length;i++){
-//     let paciente=arrCliente[i].getListaMascotas();
-//     listaMascotas.push(paciente)
-//   }
-//   return listaMascotas
-// }
-
 //Funcion eliminar paciente
 
 export function eliminarPaciente(arrCliente:Array <Cliente>,arrPacientes:Array<Paciente>):void {
@@ -222,9 +211,6 @@ export function eliminarPaciente(arrCliente:Array <Cliente>,arrPacientes:Array<P
   
 }
 
-
-
- 
 //------------------FUNCIONES PARA PROVEEDORES-----------------
 
 //Funcion para cargar proveedor 
@@ -245,19 +231,17 @@ export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string)
     return arrProveedor;
 }
   export function crearProveedor(arrProveedor: Array<Proveedor>){
-        let nombre: string = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
-        let telefono: number = readlineSync.questionInt("Ingrese el telefono del proveedor: ");
+      let nombre: string = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
+      let telefono: number = readlineSync.questionInt("Ingrese el telefono del proveedor: ");
     
-        let id: number = crearNumRandom(10);
-        while(existeId(arrProveedor,id)==true){
+      let id: number = crearNumRandom(10);
+      while(existeId(arrProveedor,id)==true){
           id=crearNumRandom(10);
         }
-        let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id)
-        arrProveedor.push(nuevoProveedor)
-    }
-
-console.log(arregloProveedores)
-
+      let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id)
+      arrProveedor.push(nuevoProveedor)
+      console.log(arregloProveedores)
+  }
 
 
 //Funcion para modificar proveedor
@@ -284,14 +268,6 @@ export function borrarProveedor(proveedor: Array< Proveedor>){
 }
 console.log(proveedor)
 }
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// console.log(arregloProveedores)
-// borrarProveedor(arregloProveedores, 2)
-// console.log(arregloProveedores)
 
 // ------------------------------------------Funciones para Veterinarias---------------------------------------------------- 
 

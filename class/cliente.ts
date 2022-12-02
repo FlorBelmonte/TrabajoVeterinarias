@@ -36,17 +36,15 @@ export default class Cliente {
         this.cantidadDeVisitas=nuevasVisitas
     }
     public contadorVIP(customer: Cliente){ 
-        let visitas: number = customer.getCantidadDeVisitas();
-            if (visitas < 5){
-                customer.setCantidadDeVisitas (visitas++)
-                console.log ("El cliente aun no es VIP")
+        if (this.cantidadDeVisitas< 5){
+            customer.setCantidadDeVisitas (this.cantidadDeVisitas+1)
+            console.log(this.cantidadDeVisitas)
+            console.log ("El cliente aun no es VIP")
                 
-          }
-          else {
+        }else {
             console.log ("es cliente VIP")
-          }
-          
-      }
+        }
+    }
 
     public getId(): number{
         return this.id
@@ -54,10 +52,7 @@ export default class Cliente {
     public getListaMascotas(){
         return this.listaMascotas
     }
-    // public agregarListaMascota(nuevaMascota: Paciente): void {
-        
-    //    this.listaMascotas.push(nuevaMascota)
-    // }
+    
 
 }
 let cliente1 : Cliente = new Cliente("pedro", 2323233, 4)
@@ -68,4 +63,6 @@ cliente1.contadorVIP(cliente1)
 cliente1.contadorVIP(cliente1)
 cliente1.contadorVIP(cliente1)
 console.log(cliente1)
+
+
 
