@@ -109,7 +109,7 @@ export function modificarTelefonoCliente(arrCliente: Array<Cliente>){
   }
 }
 //-----------Funcion para cliente VIP--------
-=======
+
 //Funcion para cargar paciente
 
 

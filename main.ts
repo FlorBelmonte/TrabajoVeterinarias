@@ -1,6 +1,6 @@
 import * as readlineSync from 'readline-sync';
 
-import { cargarCliente, crearCliente, crearNumRandom, existeId, cargarProveedor, crearProveedor, modificarProveedor, borrarProveedor, cargarPaciente, crearPaciente, cargarVeterinarias, crearVeterinaria, modificarVeterinaria, eliminarVeterinaria, borrarCliente } from './helper';
+import { cargarCliente, crearCliente, crearNumRandom, existeId, cargarProveedor, crearProveedor, modificarProveedor, borrarProveedor, cargarPaciente, crearPaciente, cargarVeterinarias, crearVeterinaria, modificarVeterinaria, eliminarVeterinaria, borrarCliente, modificarNombreCliente, modificarTelefonoCliente } from './helper';
 
 import Cliente from './class/cliente';
 import Paciente from './class/paciente';
