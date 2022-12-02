@@ -26,11 +26,6 @@ var Cliente = /** @class */ (function () {
     Cliente.prototype.setCantidadDeVisitas = function (nuevasVisitas) {
         this.cantidadDeVisitas = nuevasVisitas;
     };
-
-    
-    Cliente.prototype.setTelefono = function (nuevoTelefono) {
-        this.telefono = nuevoTelefono;
-    };
     Cliente.prototype.contadorVIP = function (customer) {
         var visitas = customer.getCantidadDeVisitas();
         if (visitas < 5) {
@@ -39,7 +34,6 @@ var Cliente = /** @class */ (function () {
         }
         else {
             console.log("es cliente VIP");
-
         }
     };
     Cliente.prototype.getId = function () {

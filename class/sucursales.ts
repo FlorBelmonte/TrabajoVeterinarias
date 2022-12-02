@@ -15,9 +15,9 @@ export default class Sucursales{
     public getVeterinarias() : Array<Veterinaria> {
         return this.veterinarias;
     }
-
     public setVeterinarias(arreglo: Array< Veterinaria>) : void {
         this.veterinarias = arreglo;
+
     }
     
     public getProveedores() : Array<Proveedor >{
