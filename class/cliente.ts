@@ -53,16 +53,4 @@ export default class Cliente {
         return this.listaMascotas
     }
     
-
 }
-let cliente1 : Cliente = new Cliente("pedro", 2323233, 4)
-cliente1.contadorVIP(cliente1)
-cliente1.contadorVIP(cliente1)
-cliente1.contadorVIP(cliente1)
-cliente1.contadorVIP(cliente1)
-cliente1.contadorVIP(cliente1)
-cliente1.contadorVIP(cliente1)
-console.log(cliente1)
-
-
-

@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.eliminarVeterinaria = exports.modificarVeterinaria = exports.crearVeterinaria = exports.cargarVeterinarias = exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.eliminarPaciente = exports.crearPaciente = exports.cargarPaciente = exports.modificarTelefonoCliente = exports.modificarNombreCliente = exports.borrarCliente = exports.crearCliente = exports.listaMascotas = exports.listaClientes = exports.cargarCliente = exports.buscarPorId = exports.existeId = exports.crearNumRandom = void 0;
+exports.eliminarVeterinaria = exports.modificarVeterinaria = exports.crearVeterinaria = exports.cargarVeterinarias = exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.eliminarPaciente = exports.crearPaciente = exports.cargarPaciente = exports.modificarTelefonoCliente = exports.modificarNombreCliente = exports.borrarCliente = exports.crearCliente = exports.cargarCliente = exports.buscarPorId = exports.existeId = exports.crearNumRandom = void 0;
 var cliente_1 = require("./class/cliente");
 var paciente_1 = require("./class/paciente");
 var proveedores_1 = require("./class/proveedores");
@@ -46,9 +46,9 @@ function cargarCliente(arrCliente, elemento) {
     var datos = elemento.split(',');
     var nombre = datos[0];
     var telefono = Number(datos[1]);
-    var id = crearNumRandom(10);
+    var id = crearNumRandom(1000);
     while (existeId(arrCliente, id) == true) {
-        id = crearNumRandom(10);
+        id = crearNumRandom(1000);
     }
     var nuevoCliente = new cliente_1["default"](nombre, telefono, id);
     arrCliente.push(nuevoCliente);
@@ -56,18 +56,16 @@ function cargarCliente(arrCliente, elemento) {
 }
 exports.cargarCliente = cargarCliente;
 //-----------Funcion para crear cliente nuevo--------
-exports.listaClientes = [];
-exports.listaMascotas = [];
 function crearCliente(arrCliente) {
     var nombre = readlineSync.question("Ingrese nombre y apellido del cliente: ");
     var telefono = readlineSync.questionInt("Ingrese el telefono del cliente: ");
-    var id = crearNumRandom(10);
+    var id = crearNumRandom(1000);
     while (existeId(arrCliente, id) == true) {
-        id = crearNumRandom(10);
+        id = crearNumRandom(1000);
     }
     var nuevoCliente = new cliente_1["default"](nombre, telefono, id);
     arrCliente.push(nuevoCliente);
-    console.log(arrCliente);
+    return arrCliente;
 }
 exports.crearCliente = crearCliente;
 //Funcion para borrar un cliente
@@ -111,12 +109,12 @@ function modificarTelefonoCliente(arrCliente) {
 }
 exports.modificarTelefonoCliente = modificarTelefonoCliente;
 //---------------------------FUNCION PARA PACIENTE-----------------------
-//Funcion para cargar paciente
+//Funcion para cargar paciente desde el Gestor de Archivos
 function cargarPaciente(arrPacientes, paciente, arrCliente) {
     var datos = paciente.split(',');
     var nombre = datos[0];
     var especie = datos[1];
-    var idDeCliente = readlineSync.questionInt("Ingrese id del Cliente: ");
+    var idDeCliente = readlineSync.questionInt("Ingrese id del Cliente, al cual quiere asociar un paciente: ");
     var ubicacionId = buscarPorId(arrCliente, idDeCliente);
     if (ubicacionId != -1) {
         var nuevoPaciente = new paciente_1["default"](nombre, especie, idDeCliente);
@@ -146,15 +144,6 @@ function crearPaciente(arrCliente, arrPacientes) {
     return arrPacientes;
 }
 exports.crearPaciente = crearPaciente;
-//Funcion para listar pacientes
-// export function listarPaciente (arrCliente:Array <Cliente>){
-//   let listaMascotas=[];
-//   for(let i:number=0;i<arrCliente.length;i++){
-//     let paciente=arrCliente[i].getListaMascotas();
-//     listaMascotas.push(paciente)
-//   }
-//   return listaMascotas
-// }
 //Funcion eliminar paciente
 function eliminarPaciente(arrCliente, arrPacientes) {
     var idCliente = readlineSync.questionInt("Ingrese Id del Cliente, para eliminar paciente: ");
@@ -197,33 +186,33 @@ function eliminarPaciente(arrCliente, arrPacientes) {
 }
 exports.eliminarPaciente = eliminarPaciente;
 //------------------FUNCIONES PARA PROVEEDORES-----------------
-//Funcion para cargar proveedor 
-var arregloProveedores = [];
+//Funcion para cargar proveedor desde el Gestor de Archivos
 function cargarProveedor(arrProveedor, elemento) {
     var datos = elemento.split(',');
     var nombre = datos[0];
     var telefono = Number(datos[1]);
-    var id = crearNumRandom(10);
+    var id = crearNumRandom(1000);
     while (existeId(arrProveedor, id) == true) {
-        id = crearNumRandom(10);
+        id = crearNumRandom(1000);
     }
     var nuevoProveedor = new proveedores_1["default"](nombre, telefono, id);
     arrProveedor.push(nuevoProveedor);
     return arrProveedor;
 }
 exports.cargarProveedor = cargarProveedor;
+////Funcion para crear nuevo Proveedor
 function crearProveedor(arrProveedor) {
     var nombre = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
     var telefono = readlineSync.questionInt("Ingrese el telefono del proveedor: ");
-    var id = crearNumRandom(10);
+    var id = crearNumRandom(1000);
     while (existeId(arrProveedor, id) == true) {
-        id = crearNumRandom(10);
+        id = crearNumRandom(1000);
     }
     var nuevoProveedor = new proveedores_1["default"](nombre, telefono, id);
     arrProveedor.push(nuevoProveedor);
+    console.log(arrProveedor);
 }
 exports.crearProveedor = crearProveedor;
-console.log(arregloProveedores);
 //Funcion para modificar proveedor
 function modificarProveedor(arregloProveedores, posicion) {
     var nombre = readlineSync.question("Ingrese el nombre modificado: ");
@@ -247,23 +236,15 @@ function borrarProveedor(proveedor) {
     console.log(proveedor);
 }
 exports.borrarProveedor = borrarProveedor;
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// console.log(arregloProveedores)
-// borrarProveedor(arregloProveedores, 2)
-// console.log(arregloProveedores)
 // ------------------------------------------Funciones para Veterinarias---------------------------------------------------- 
 //Cargar Veterinarias
 function cargarVeterinarias(elemento, arrVeterinaria, arrClientes, arrPacientes) {
     var datos = elemento.split(',');
     var nombre = datos[0];
     var direccion = datos[1];
-    var id = crearNumRandom(10);
+    var id = crearNumRandom(1000);
     while (existeId(arrVeterinaria, id) == true) {
-        id = crearNumRandom(10);
+        id = crearNumRandom(1000);
     }
     var listaClientes = arrClientes;
     var listaGeneralMascotas = arrPacientes;
@@ -276,9 +257,9 @@ exports.cargarVeterinarias = cargarVeterinarias;
 function crearVeterinaria(arrVeterinaria, arrClientes, arrPacientes) {
     var nombre = readlineSync.question("Ingrese el nombre de la veterinaria: ");
     var direccion = readlineSync.question("ingrese dirección: ");
-    var id = crearNumRandom(10);
+    var id = crearNumRandom(1000);
     while (existeId(arrVeterinaria, id) == true) {
-        id = crearNumRandom(10);
+        id = crearNumRandom(1000);
     }
     var listaClientes = arrClientes;
     var listaGeneralMascotas = arrPacientes;
@@ -297,7 +278,7 @@ function modificarVeterinaria(arrVeterinarias, posicion, arrClientes, arrPacient
     console.log(arrVeterinarias);
 }
 exports.modificarVeterinaria = modificarVeterinaria;
-//Borrar Veterinaria 
+//Funcion Borrar Veterinaria  
 function eliminarVeterinaria(arrVeterinarias, id) {
     for (var i = 0; i < arrVeterinarias.length; i++) {
         if (id === arrVeterinarias[i].getId()) {
