@@ -230,6 +230,9 @@ export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string)
     arrProveedor.push(nuevoProveedor)
     return arrProveedor;
 }
+
+//Funcion para crear Proveedor
+
   export function crearProveedor(arrProveedor: Array<Proveedor>){
       let nombre: string = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
       let telefono: number = readlineSync.questionInt("Ingrese el telefono del proveedor: ");
