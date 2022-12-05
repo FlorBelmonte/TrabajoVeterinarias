@@ -27,9 +27,9 @@ var Cliente = /** @class */ (function () {
         this.cantidadDeVisitas = nuevasVisitas;
     };
     Cliente.prototype.contadorVIP = function (customer) {
-        var visitas = customer.getCantidadDeVisitas();
-        if (visitas < 5) {
-            customer.setCantidadDeVisitas(visitas++);
+        if (this.cantidadDeVisitas < 5) {
+            customer.setCantidadDeVisitas(this.cantidadDeVisitas + 1);
+            console.log(this.cantidadDeVisitas);
             console.log("El cliente aun no es VIP");
         }
         else {
@@ -45,11 +45,3 @@ var Cliente = /** @class */ (function () {
     return Cliente;
 }());
 exports["default"] = Cliente;
-var cliente1 = new Cliente("pedro", 2323233, 4);
-cliente1.contadorVIP(cliente1);
-cliente1.contadorVIP(cliente1);
-cliente1.contadorVIP(cliente1);
-cliente1.contadorVIP(cliente1);
-cliente1.contadorVIP(cliente1);
-cliente1.contadorVIP(cliente1);
-console.log(cliente1);
