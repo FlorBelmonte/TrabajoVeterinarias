@@ -1,1 +1,2 @@
-Juancito,gato;Tita,perro;Simon,perro;Renata,tortuga;
+Juancito,gato;Tita,perro;Simon,perro;Renata,tortuga;Miguelito,oso
+

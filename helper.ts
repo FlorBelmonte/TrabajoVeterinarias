@@ -8,24 +8,41 @@ import {Readline} from 'readline/promises'
 
 
 export function crearNumRandom(max: number){
-    return Math.floor(Math.random() * max)
+  return Math.floor(Math.random() * max)
 }
 
 
 // -----------------FUNCION PARA CLIENTES------------------
 
 //funcion para verificar si id existe
- export function existeId(arreglo:Array<Cliente|Proveedor|Veterinaria>,id:number):boolean{
-    let existe:boolean= false;
-    let i:number=0;
-    while((existe==false)&&(i<arreglo.length)){
-        if(id==arreglo[i].getId()){
-            existe=true
-        }
-        i=i+1
+export function existeId(arreglo:Array<Cliente|Proveedor|Veterinaria>,id:number):boolean{
+  let existe:boolean= false;
+  let i:number=0;
+  while((existe==false)&&(i<arreglo.length)){
+    if(id==arreglo[i].getId()){
+      existe=true
     }
-    return existe
+    i=i+1
+  }
+  return existe
  }
+
+ //Funcion buscar por id a un cliente
+ 
+ export function buscarPorId(arreglo:Array<Cliente|Proveedor>,id:number){
+  let ubicacion:number=-1;
+  let ok:boolean=false;
+  let i:number=0;
+  while((ok==false) && (i< arreglo.length)){
+    if(id==arreglo[i].getId()){
+      ubicacion=i;
+      ok=true;
+    }else{
+      i=i+1
+    }
+  }
+  return ubicacion
+} 
 
 //-------Funcion para cargar clientes desdes el Gestor de archivos-----
  
@@ -33,10 +50,10 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
     let datos = elemento.split(',');
     let nombre: string = datos[0];
     let telefono: number = Number(datos[1]);
-    let id: number = crearNumRandom(5);
+    let id: number = crearNumRandom(1000);
     
     while(existeId(arrCliente,id)==true){
-      id=crearNumRandom(5);
+      id=crearNumRandom(1000);
     }
     
 
@@ -48,26 +65,20 @@ export function cargarCliente(arrCliente: Array<Cliente>,elemento: string){
 
 //-----------Funcion para crear cliente nuevo--------
 
-export let listaClientes: Cliente[] = []
-export let listaMascotas: Paciente[] = []
-
 export function crearCliente(arrCliente: Array<Cliente>){
-    let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
-    let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
+  let nombre: string = readlineSync.question("Ingrese nombre y apellido del cliente: ");
+  let telefono: number = readlineSync.questionInt("Ingrese el telefono del cliente: ");
     
-    let id: number = crearNumRandom(5);
+  let id: number = crearNumRandom(1000);
 
-    while(existeId(arrCliente,id)==true){
-      id=crearNumRandom(5);
-    }
+  while(existeId(arrCliente,id)==true){
+    id=crearNumRandom(1000);
+  }
     
-
-
-    let nuevoCliente : Cliente = new Cliente(nombre, telefono, id,  );
-
-    arrCliente.push(nuevoCliente)
-
-    console.log(arrCliente)
+  let nuevoCliente : Cliente = new Cliente(nombre, telefono, id,  );
+  arrCliente.push(nuevoCliente)
+  
+  return arrCliente
 }
 
 //Funcion para borrar un cliente
@@ -76,99 +87,164 @@ export function borrarCliente(arrClientes:Array <Cliente>):void{
   let deleteId:number=readlineSync.questionInt("Ingrese el id del cliente a eliminar: ");
   let ubicacion:number=buscarPorId(arrClientes,deleteId);
   if(ubicacion!= -1){
-    arrClientes.splice(ubicacion,1)
+    arrClientes.splice(ubicacion,1);
+    console.log("Se elimino cliente correctamente");
   }else{
     console.log("No se encontro id ingresado")
   }
 
 }
 
-//-----------Funcion para cliente VIP--------
-
-export function contadorVIP(customer: Cliente){ 
-  let visitas: number = customer.getCantidadDeVisitas();
-      if (visitas < 5){
-          customer.setCantidadDeVisitas (visitas++)
-          console.log ("El cliente aun no es VIP")
-          
-    }
-    else {
-      console.log ("es cliente VIP")
-    }
-    
+//Funciones para modificar datos de cliente
+export function modificarNombreCliente(arrCliente:Array<Cliente>){
+  
+  let idCliente:number=readlineSync.questionInt("Ingrese id del cliente a modificar el nombre: ");
+  
+  let ubicacionId:number=buscarPorId(arrCliente,idCliente);
+  if(ubicacionId!=-1){
+    let nuevoNombre:string=readlineSync.question("Ingrese el nuevo nombre: ");
+    arrCliente[ubicacionId].setNombre(nuevoNombre)
+    console.log("Se modifico exitosamente el nombre:  " + arrCliente[ubicacionId].getNombre())
+  }else{
+    console.log("No se encontro id ingresado")
+  }
 }
 
-//------------------FUNCION PARA PACIENTE-----------------
+export function modificarTelefonoCliente(arrCliente: Array<Cliente>){
+  let idCliente:number=readlineSync.questionInt("Ingrese Id del cliente a modificar el numero telefonico: ");
+  let ubicacionId=buscarPorId(arrCliente,idCliente);
+  if(ubicacionId!=-1){
+    let nuevoTelefono:number=readlineSync.questionInt("Ingrese nuevo numero telefonico: ");
+    arrCliente[ubicacionId].setTelefono(nuevoTelefono);
+    console.log("Se modifico exitosamente el numero telefonico: " + arrCliente[ubicacionId].getTelefono());
+  }else {
+    console.log("No se encontro id ingresado")
+  }
+}
 
-//Fubcion para crear nuevo paciente
-export function crearPaciente(arrPacientes:Array <Paciente>,arrCliente:Array <Cliente>){
+//---------------------------FUNCION PARA PACIENTE-----------------------
+
+//Funcion para cargar paciente desde el Gestor de Archivos
+
+export function cargarPaciente(arrPacientes:Array <Paciente>, paciente: string , arrCliente: Array <Cliente>){
+  let datos: string[] = paciente.split(',');
+  let nombre: string = datos[0];
+  let especie: string = datos[1];
+  let idDeCliente=readlineSync.questionInt("Ingrese id del Cliente, al cual quiere asociar un paciente: ");
+  let ubicacionId:number=buscarPorId(arrCliente,idDeCliente);
+  
+  if(ubicacionId!= -1){
+    let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
+    arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
+    arrPacientes.push(nuevoPaciente);
+  }else{
+    console.log("No se encontro Id ingresado")
+  }
+
+  return arrPacientes
+}
+
+
+//Funcion para crear nuevo paciente
+export function crearPaciente(arrCliente:Array <Cliente>, arrPacientes:Array <Paciente>){
   let nombre:string=readlineSync.question("Ingrese el nombre del paciente: ");
   let especie:string=readlineSync.question("Ingrese la especie del Paciente: ");
   let idDeCliente=readlineSync.questionInt("Ingrese id del Cliente: ");
 
-  // if (existeId(arrCliente,idDeCliente)==false){
-  //   let idDeCliente=readlineSync.questionInt("Id ingresado no existe, ingrese nuevmente un numero: ");
-  // }
-  let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
-  arrPacientes.push(nuevoPaciente);
   let ubicacionId:number=buscarPorId(arrCliente,idDeCliente);
+  
   if(ubicacionId!= -1){
+    let nuevoPaciente:Paciente=new Paciente(nombre,especie,idDeCliente);
+    arrPacientes.push(nuevoPaciente);
     arrCliente[ubicacionId].getListaMascotas().push(nuevoPaciente);
   }else{
     console.log("No se encontro Id ingresado")
   }
-  return nuevoPaciente
+  return arrPacientes
 }
 
-  //Funcion buscar por id a un cliente
+//Funcion eliminar paciente
+
+export function eliminarPaciente(arrCliente:Array <Cliente>,arrPacientes:Array<Paciente>):void {
+  let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para eliminar paciente: ");
+  let ubicacionId=buscarPorId(arrCliente,idCliente);
  
-  export function buscarPorId(arreglo:Array<Cliente|Proveedor>,id:number){
-    let ubicacion:number=-1;
-    let ok:boolean=false;
+  
+  if(ubicacionId!=-1){
+    console.log("Lista de pacientes "+ JSON.stringify(arrCliente[ubicacionId].getListaMascotas()) )
+    let deletPaciente=readlineSync.question("Ingrese el nombre del paciente a eliminar: ")
+    let eliminar:boolean=false;
     let i:number=0;
-    while((ok==false) && (i< arreglo.length)){
-      if(id==arreglo[i].getId()){
-        ubicacion=i;
-        ok=true;
+
+    while((eliminar==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
+      if(deletPaciente == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
+        eliminar=true;
+        arrCliente[ubicacionId].getListaMascotas().splice(i,1)
       }else{
         i=i+1
       }
     }
-    return ubicacion
-  } 
+
+    let eliminarEnListaGeneral:boolean=false;
+    i=0;
+    while((eliminarEnListaGeneral==false)&&(i<arrPacientes.length)){
+      if((idCliente==arrPacientes[i].getIdDelCliente())&& (deletPaciente==arrPacientes[i].getNombre())){
+      eliminarEnListaGeneral=true;
+      arrPacientes.splice(i,1);
+      }else{
+        i=i+1
+      }
+    }
+    
+    if(eliminar ==true && eliminarEnListaGeneral==true){
+      console.log("Se elimino exitosamente, el paciente ingresado")
+    }else{
+      console.log("No se encontro el nombre del Paciente ingresado")
+    }
+    
+  }else{
+    console.log("El Id del cliente Ingresado no se encontro")
+  }
+  
+  
+}
 
 //------------------FUNCIONES PARA PROVEEDORES-----------------
 
-//Funcion para cargar proveedor 
-let arregloProveedores: Proveedor[] = []
+//Funcion para cargar proveedor desde el Gestor de Archivos
 
 export function cargarProveedor(arrProveedor: Array<Proveedor>,elemento: string): Array<Proveedor>{
-    let datos = elemento.split(',');
-    let nombre: string = datos[0];
-    let telefono: number = Number(datos[1]);
-    let id: number = crearNumRandom(5);
+  let datos = elemento.split(',');
+  let nombre: string = datos[0];
+  let telefono: number = Number(datos[1]);
+  let id: number = crearNumRandom(1000);
 
-    while(existeId(arrProveedor,id)==true){
-      id=crearNumRandom(5);
-    }
-    let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id);
+  while(existeId(arrProveedor,id)==true){
+    id=crearNumRandom(1000);
+  }
+  let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id);
     
-    arrProveedor.push(nuevoProveedor)
-    return arrProveedor;
+  arrProveedor.push(nuevoProveedor)
+  return arrProveedor;
 }
-  export function crearProveedor(arrProveedor: Array<Proveedor>){
-        let nombre: string = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
-        let telefono: number = readlineSync.questionInt("Ingrese el telefono del proveedor: ");
-    
-        let id: number = crearNumRandom(5);
-        while(existeId(arrProveedor,id)==true){
-          id=crearNumRandom(5);
-        }
-        let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id)
-        arrProveedor.push(nuevoProveedor)
-    }
 
-console.log(arregloProveedores)
+//Funcion para crear nuevo Proveedor
+
+export function crearProveedor(arrProveedor: Array<Proveedor>){
+  let nombre: string = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
+  let telefono: number = readlineSync.questionInt("Ingrese el telefono del proveedor: ");
+    
+  let id: number = crearNumRandom(1000);
+  while(existeId(arrProveedor,id)==true){
+    id=crearNumRandom(1000);
+  }
+
+  let nuevoProveedor: Proveedor = new Proveedor(nombre, telefono, id);
+  arrProveedor.push(nuevoProveedor);
+  console.log(arrProveedor);
+}
+
+
 //Funcion para modificar proveedor
 export function modificarProveedor(arregloProveedores: Array<Proveedor>, posicion: number){
   let nombre: string = readlineSync.question("Ingrese el nombre modificado: ");
@@ -187,21 +263,12 @@ export function borrarProveedor(proveedor: Array< Proveedor>){
   let deleteId:number=readlineSync.questionInt("Ingrese Id a Eliminar: ")
   for (let i= 0; i< proveedor.length; i++){
     if (deleteId === proveedor[i].getId()){
-            proveedor.splice(i,1)
-    }else{
-      console.log("No se encontro Id ingresado")
+      proveedor.splice(i,1)
+      console.log("Se elimino Proveedor con id ingresado")
     }
+  }
+  console.log(proveedor)
 }
-console.log(proveedor)
-}
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// crearProveedor(arregloProveedores)
-// console.log(arregloProveedores)
-// borrarProveedor(arregloProveedores, 2)
-// console.log(arregloProveedores)
 
 // ------------------------------------------Funciones para Veterinarias---------------------------------------------------- 
 
@@ -211,17 +278,16 @@ export function cargarVeterinarias(elemento: string, arrVeterinaria: Array<Veter
 	let datos = elemento.split(',');
 	let nombre : string = datos[0];
 	let direccion : string = datos[1];
-	let id: number = crearNumRandom(5);
+	let id: number = crearNumRandom(1000);
     
-    while(existeId(arrVeterinaria,id)==true){
-      id=crearNumRandom(5);
-    }
+  while(existeId(arrVeterinaria,id)==true){
+    id=crearNumRandom(1000);
+  }
 	let listaClientes: Array<Cliente> = arrClientes;
 	let listaGeneralMascotas: Array<Paciente> = arrPacientes;
-
-let nuevaVeterinaria: Veterinaria = new Veterinaria (nombre, direccion, id, listaClientes, listaGeneralMascotas);
-arrVeterinaria.push(nuevaVeterinaria)
-return arrVeterinaria;
+  let nuevaVeterinaria: Veterinaria = new Veterinaria (nombre, direccion, id, listaClientes, listaGeneralMascotas);
+  arrVeterinaria.push(nuevaVeterinaria)
+  return arrVeterinaria;
 }
 
 
@@ -231,47 +297,45 @@ return arrVeterinaria;
 export function crearVeterinaria(arrVeterinaria: Array<Veterinaria>, arrClientes: Array<Cliente>, arrPacientes: Array <Paciente>){
 	let nombre : string = readlineSync.question("Ingrese el nombre de la veterinaria: ");
 	let direccion: string = readlineSync.question("ingrese dirección: ")
-	let id: number = crearNumRandom(5);
+	let id: number = crearNumRandom(1000);
     
-    while(existeId(arrVeterinaria,id)==true){
-      id=crearNumRandom(5);
-    }
+  while(existeId(arrVeterinaria,id)==true){
+    id=crearNumRandom(1000);
+  }
 	
 	let listaClientes: Array<Cliente> = arrClientes;
 	let listaGeneralMascotas: Array<Paciente> = arrPacientes;
 
-let nuevaVeterinaria: Veterinaria = new Veterinaria(nombre, direccion, id, listaClientes, listaGeneralMascotas);
-arrVeterinaria.push(nuevaVeterinaria)
+  let nuevaVeterinaria: Veterinaria = new Veterinaria(nombre, direccion, id, listaClientes, listaGeneralMascotas);
+  arrVeterinaria.push(nuevaVeterinaria)
 	console.log(arrVeterinaria)
 
 }
-
-
 
 //Modificar veterinaria
 
 export function modificarVeterinaria(arrVeterinarias: Array<Veterinaria>, posicion: number, arrClientes: Array<Cliente>, arrPacientes: Array<Paciente>){
 	let nombre : string = readlineSync.question("Ingrese el nuevo nombre: ");
-	let direccion: string = readlineSync.question("ingrese nueva dirección: ")
+	let direccion: string = readlineSync.question("ingrese nueva dirección: ");
 
-  	let id: number = arrVeterinarias[posicion].getId()    
+  let id: number = arrVeterinarias[posicion].getId()    
 
-	let veterinariaModificada : Veterinaria = new Veterinaria (nombre, direccion, id, arrClientes, arrPacientes)
+	let veterinariaModificada : Veterinaria = new Veterinaria (nombre, direccion, id, arrClientes, arrPacientes);
 	arrVeterinarias[posicion] = veterinariaModificada;
 	console.log(arrVeterinarias)
 
 }
 
 
-//Borrar Veterinaria 
+//Funcion Borrar Veterinaria  
 
-export function eliminarVeterinaria(arrVeterinarias: Array<Veterinaria>, id: number){
+export function eliminarVeterinaria(arrVeterinarias: Array<Veterinaria>, id: number):void{
 
   for (let i= 0; i< arrVeterinarias.length; i++){
     if (id === arrVeterinarias[i].getId()){
-            arrVeterinarias.splice(i,1)
+      arrVeterinarias.splice(i,1)
     }
-}
-console.log(arrVeterinarias)
+  }
+  console.log(arrVeterinarias)
 }
 

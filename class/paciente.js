@@ -9,10 +9,19 @@ var Paciente = /** @class */ (function () {
     Paciente.prototype.getNombre = function () {
         return this.nombre;
     };
+    Paciente.prototype.getIdDelCliente = function () {
+        return this.idDeCliente;
+    };
     Paciente.prototype.esExotica = function () {
+        var ok = false;
         if (this.especie != "perro" && this.especie != "gato") {
-            console.log("el paciente es especie exotica");
+            ok = true;
+            console.log("el paciente " + this.nombre + " es especie exotica");
         }
+        else {
+            console.log("el paciente " + this.nombre + " no es especie exotica");
+        }
+        return ok;
     };
     return Paciente;
 }());
