@@ -6,7 +6,7 @@ import Proveedor from './proveedores';
 export default class Veterinaria {
     private nombre: string;
     private direccion: string;
-    private id: number; //Agregue id
+    private id: number;
     private listaClientes: Array<Cliente>;
     private listaPacientes: Array<Paciente>;
 
