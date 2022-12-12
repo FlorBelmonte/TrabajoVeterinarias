@@ -209,6 +209,38 @@ export function eliminarPaciente(arrCliente:Array <Cliente>,arrPacientes:Array<P
   
 }
 
+//funcion para modificar Paciente
+
+export function modificarPaciente(arrCliente:Array <Cliente>,arrPacientes:Array<Paciente>):void {
+  let idCliente:number=readlineSync.questionInt("Ingrese Id del Cliente, para Modificar el paciente: ");
+  let ubicacionId=buscarPorId(arrCliente,idCliente);
+ 
+  
+  if(ubicacionId!=-1){
+    console.log("Lista de pacientes "+ JSON.stringify(arrCliente[ubicacionId].getListaMascotas()) )
+    let pacienteModificar=readlineSync.question("Ingrese el nombre del paciente a Modificar: ")
+    let ok:boolean=false;
+    let i:number=0;
+
+    while((ok==false) && (i<arrCliente[ubicacionId].getListaMascotas().length)){
+      if(pacienteModificar == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()){
+        ok=true;
+        let nuevoNombre=readlineSync.question("Ingrese el nuevo nombre del paciente: ")
+        let nuevaEspecie=readlineSync.question("Ingrese nuevamente especie del paciente: ")
+        arrCliente[ubicacionId].getListaMascotas()[i].setNombre(nuevoNombre);
+        arrCliente[ubicacionId].getListaMascotas()[i].setEspecie(nuevaEspecie);
+        console.log("El paciente se modifico exitosamente")
+      }else{
+        i=i+1
+      }
+    }
+  }else{
+    console.log("El Id del cliente Ingresado no se encontro")
+  }
+  
+}
+
+
 //------------------FUNCIONES PARA PROVEEDORES-----------------
 
 //Funcion para cargar proveedor desde el Gestor de Archivos
