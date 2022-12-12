@@ -12,6 +12,16 @@ export default class Paciente{
     public getNombre():string{
         return this.nombre
     }
+    public setNombre(nuevoNombre:string):void{
+        this.nombre=nuevoNombre
+    }
+    public getEspecie():string{
+        return this.especie
+    }
+    public setEspecie(nuevoEspecie:string):void{
+        this.especie=nuevoEspecie
+    }
+
     public getIdDelCliente():number{
         return this.idDeCliente
     }

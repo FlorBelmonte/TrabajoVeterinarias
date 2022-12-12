@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.eliminarVeterinaria = exports.modificarVeterinaria = exports.crearVeterinaria = exports.cargarVeterinarias = exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.eliminarPaciente = exports.crearPaciente = exports.cargarPaciente = exports.modificarTelefonoCliente = exports.modificarNombreCliente = exports.borrarCliente = exports.crearCliente = exports.cargarCliente = exports.buscarPorId = exports.existeId = exports.crearNumRandom = void 0;
+exports.eliminarVeterinaria = exports.modificarVeterinaria = exports.crearVeterinaria = exports.cargarVeterinarias = exports.borrarProveedor = exports.modificarProveedor = exports.crearProveedor = exports.cargarProveedor = exports.modificarPaciente = exports.eliminarPaciente = exports.crearPaciente = exports.cargarPaciente = exports.modificarTelefonoCliente = exports.modificarNombreCliente = exports.borrarCliente = exports.crearCliente = exports.cargarCliente = exports.buscarPorId = exports.existeId = exports.crearNumRandom = void 0;
 var cliente_1 = require("./class/cliente");
 var paciente_1 = require("./class/paciente");
 var proveedores_1 = require("./class/proveedores");
@@ -185,6 +185,57 @@ function eliminarPaciente(arrCliente, arrPacientes) {
     }
 }
 exports.eliminarPaciente = eliminarPaciente;
+//funcion para modificar Paciente
+function modificarPaciente(arrCliente, arrPacientes) {
+    var idCliente = readlineSync.questionInt("Ingrese Id del Cliente, para Modificar el paciente: ");
+    var ubicacionId = buscarPorId(arrCliente, idCliente);
+    if (ubicacionId != -1) {
+        console.log("Lista de pacientes " + JSON.stringify(arrCliente[ubicacionId].getListaMascotas()));
+        var pacienteModificar = readlineSync.question("Ingrese el nombre del paciente a Modificar: ");
+        var ok = false;
+        var i = 0;
+        while ((ok == false) && (i < arrCliente[ubicacionId].getListaMascotas().length)) {
+            if (pacienteModificar == arrCliente[ubicacionId].getListaMascotas()[i].getNombre()) {
+                ok = true;
+                var nuevoNombre = readlineSync.question("Ingrese el nuevo nombre del paciente: ");
+                var nuevaEspecie = readlineSync.question("Ingrese nuevamente especie del paciente: ");
+                arrCliente[ubicacionId].getListaMascotas()[i].setNombre(nuevoNombre);
+                arrCliente[ubicacionId].getListaMascotas()[i].setEspecie(nuevaEspecie);
+                console.log("modifico en el arreglo de cliente");
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        console.log(arrPacientes);
+        var ubicacion = false;
+        var j = 0;
+        while ((ubicacion == false) && (j < arrPacientes.length)) {
+            console.log("entro el While");
+            if ((idCliente == arrPacientes[j].getIdDelCliente()) && (pacienteModificar == arrPacientes[j].getNombre())) {
+                console.log("entro al if");
+                ubicacion = true;
+                var nuevoNombre = readlineSync.question("Ingrese el nuevamente nombre del paciente: ");
+                var nuevaEspecie = readlineSync.question("Ingrese nuevamente especie del paciente: ");
+                arrPacientes[j].setNombre(nuevoNombre);
+                arrPacientes[j].setEspecie(nuevaEspecie);
+            }
+            else {
+                j = j + 1;
+            }
+        }
+        if (ok == true && ubicacion == true) {
+            console.log("Se modifico exitosamente, el paciente ingresado");
+        }
+        else {
+            console.log("No se encontro el nombre del Paciente ingresado");
+        }
+    }
+    else {
+        console.log("El Id del cliente Ingresado no se encontro");
+    }
+}
+exports.modificarPaciente = modificarPaciente;
 //------------------FUNCIONES PARA PROVEEDORES-----------------
 //Funcion para cargar proveedor desde el Gestor de Archivos
 function cargarProveedor(arrProveedor, elemento) {
@@ -200,7 +251,7 @@ function cargarProveedor(arrProveedor, elemento) {
     return arrProveedor;
 }
 exports.cargarProveedor = cargarProveedor;
-////Funcion para crear nuevo Proveedor
+//Funcion para crear nuevo Proveedor
 function crearProveedor(arrProveedor) {
     var nombre = readlineSync.question("Ingrese nombre y apellido del proveedor: ");
     var telefono = readlineSync.questionInt("Ingrese el telefono del proveedor: ");

@@ -9,6 +9,15 @@ var Paciente = /** @class */ (function () {
     Paciente.prototype.getNombre = function () {
         return this.nombre;
     };
+    Paciente.prototype.setNombre = function (nuevoNombre) {
+        this.nombre = nuevoNombre;
+    };
+    Paciente.prototype.getEspecie = function () {
+        return this.especie;
+    };
+    Paciente.prototype.setEspecie = function (nuevoEspecie) {
+        this.especie = nuevoEspecie;
+    };
     Paciente.prototype.getIdDelCliente = function () {
         return this.idDeCliente;
     };
